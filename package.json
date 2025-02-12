@@ -13,9 +13,15 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/preset-triangles": "^3.2.0",
+    "@tsparticles/react": "^3.0.0",
+    "gh-pages": "^6.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "gh-pages":"^6.3.0"
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1",
+    "tsparticles-engine": "^2.12.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
