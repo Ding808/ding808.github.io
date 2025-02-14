@@ -31,11 +31,11 @@ const NavBar = ({ setPage, currentPage }) => {
           <button
             style={{
               ...styles.navButton,
-              ...(currentPage === 'contact' ? styles.activeButton : {}),
+              ...(currentPage === 'skills' ? styles.activeButton : {}),
             }}
-            onClick={() => setPage('contact')}
+            onClick={() => setPage('skills')}
           >
-            Contact
+            Skills
           </button>
         </li>
       </ul>
