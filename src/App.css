@@ -45,3 +45,19 @@
 .read-the-docs {
   color: #888;
 }
+@keyframes ripple {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+body {
+  cursor: none;
+}
