@@ -1,42 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ParticleBackground from './Canvas/ParticleBackground';
+// App.jsx
+import { useState } from 'react';
+import './App.css';
+import NavBar from './Components/NavBar'; 
+import CustomCursor from './Canvas/CustomCursor'; 
+import Home from './pages/Home';
+import About from './pages/About';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState('home');
+  const [count, setCount] = useState(0);
+
+  // reder tha page
+  const renderPage = () => {
+    switch (page) {
+      case 'home':
+        return <Home count={count} setCount={setCount} />;
+      case 'about':
+        return <About />;
+      case 'contact':
+        return (
+          <div style={{ padding: '20px', color: 'white' }}>
+            <h2>Contact</h2>
+            <p>You can contact me at: example@example.com</p>
+          </div>
+        );
+      default:
+        return (
+          <div style={{ padding: '20px', color: 'white' }}>
+            <h2>Page Not Found</h2>
+          </div>
+        );
+    }
+  };
 
   return (
     <>
-    <div>
-      <ParticleBackground />
-      {}
-      <h1 style={{ color: 'white', textAlign: 'center'}}>欢迎来到我的网站</h1>
-    </div>
-    
-      <div>
-      <a href="https://react.dev" target="_blank">
-        <img src="/images/WechatIMG2451.jpg" className="logo" alt="My profile image" />
-      </a>
-        <a href="https://react.dev" target="_blank">
-          <img src="/images/鸡.jpg" className="logo" alt="鸡" />
-        </a>
-      </div>
-      <h1>Ding808</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-       This is my personal profile website. 
-      </p>
+      {/* navigation bar */}
+      <NavBar setPage={setPage} currentPage={page} />
+      {/* remder the page */}
+      {renderPage()}
+      {/* mouse effect */}
+      <CustomCursor />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
