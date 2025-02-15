@@ -4,6 +4,10 @@ import NavBar from './Components/NavBar';
 import CustomCursor from './Canvas/CustomCursor'; 
 import Home from './pages/Home';
 import About from './pages/About';
+import Hobbies from './pages/Hobbies';
+import Experience from './pages/Experience';
+import Projects from './pages/Projects';
+import Skills from './pages/Skills';
 
 function App() {
   const [page, setPage] = useState('home');
@@ -29,6 +33,7 @@ function App() {
 
   return (
     <>
+    {}
       {/* navigation bar */}
       <NavBar setPage={setPage} currentPage={page} />
       {/* remder the page */}
