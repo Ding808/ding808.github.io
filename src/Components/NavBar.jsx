@@ -10,6 +10,7 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
     experience: useRef(null),
     hobbies: useRef(null),
     about: useRef(null),
+    contact: useRef(null)
   };
 
   // store the indication style
@@ -123,6 +124,21 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
             onMouseLeave={() => setHoveredButton(null)}
           >
             About
+          </button>
+        </li>
+        <li style={styles.navItem}>
+          <button
+            ref={buttonRefs.contact}
+            style={{
+              ...styles.navButton,
+              ...(currentPage === 'contact' ? styles.activeButton : {}),
+              ...(hoveredButton === 'contact' ? styles.hoveredButton : {}),
+            }}
+            onClick={() => setPage('contact')}
+            onMouseEnter={() => setHoveredButton('contact')}
+            onMouseLeave={() => setHoveredButton(null)}
+          >
+            Contact
           </button>
         </li>
         {}

@@ -8,6 +8,7 @@ import Hobbies from './pages/Hobbies';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
+import Contact from './pages/Contact';
 
 function App() {
   const [page, setPage] = useState('home');
@@ -28,6 +29,8 @@ function App() {
         return <Hobbies/>
       case 'about':
         return <About/>
+      case 'contact':
+        return <Contact/>
     }
   };
 

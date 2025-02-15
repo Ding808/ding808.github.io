@@ -12,7 +12,7 @@ function Home() {
       <div>
         <a target="_blank" rel="noreferrer">
           <img
-            src="/images/WechatIMG2451.jpg"
+            src="/images/ProfileImage.jpg"
             className="logo"
             alt="My profile image"
           />
