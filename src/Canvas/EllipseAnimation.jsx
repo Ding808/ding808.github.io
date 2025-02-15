@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const EllipseAnimation = () => {
   const items = [
-    { src: '/images/Bilibili.png', link: 'https://www.example.com/1' },
+    { src: '/images/Bilibili.png', link: 'https://space.bilibili.com/452004794' },
     { src: '/images/Discord.png', link: 'https://www.example.com/2' },
-    { src: '/images/Github.png', link: 'https://www.example.com/3' },
-    { src: '/images/Gmail.png', link: 'https://www.example.com/4' },
+    { src: '/images/Github.png', link: 'https://github.com/Ding808' },
+    { src: '/images/Gmail.png', link: 'https://mail.google.com/mail/?view=cm&fs=1&to=dingyeuyang@gmail.com' },
     { src: '/images/Instagram.png', link: 'https://www.example.com/5' },
     { src: '/images/Wechat.png', link: 'https://www.example.com/6' },
     { src: '/images/QQ.png', link: 'https://www.example.com/7' },
@@ -33,7 +33,7 @@ const EllipseAnimation = () => {
   // isHovered：记录每个图片是否处于鼠标 hover 状态
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
-  const speed = 0.01;
+  const speed = 0.008;
   // 持续更新 globalRotation 以实现整体旋转效果
   useEffect(() => {
     let animationFrameId;
@@ -157,7 +157,7 @@ const EllipseAnimation = () => {
               });
               const frozenAngle =
                 manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
-              const duration = 500; // 500 毫秒动画过渡
+              const duration = 1000; // 500 毫秒动画过渡
               animateTransition(i, frozenAngle, duration);
             }}
           >
