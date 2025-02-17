@@ -3,15 +3,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 const EllipseAnimation = () => {
   const items = [
     { src: '/images/Bilibili.png', link: 'https://space.bilibili.com/452004794' },
-    { src: '/images/Discord.png', link: 'https://www.example.com/2' },
+    { src: '/images/Discord.png', link: 'https://discord.com/users/754567756237766688' },
     { src: '/images/Github.png', link: 'https://github.com/Ding808' },
     { src: '/images/Gmail.png', link: 'https://mail.google.com/mail/?view=cm&fs=1&to=dingyeuyang@gmail.com' },
-    { src: '/images/Instagram.png', link: 'https://www.example.com/5' },
-    { src: '/images/Wechat.png', link: 'https://www.example.com/6' },
-    { src: '/images/QQ.png', link: 'https://www.example.com/7' },
-    { src: '/images/Steam.png', link: 'https://www.example.com/8' },
-    { src: '/images/Tiktok.png', link: 'https://www.example.com/9' },
-    { src: '/images/X.png', link: 'https://www.example.com/10' },
+    { src: '/images/Instagram.png', link: 'https://https://www.instagram.com/pigeond007' },
+    { src: '/images/Wechat.png', link: 'https://www.wechat.com/A1974538170' },
+    { src: '/images/QQ.png', link: 'http://im.qq.com/index/1974538170' },
+    { src: '/images/Steam.png', link: 'https://steamcommunity.com/profiles/76561198873711484/' },
+    { src: '/images/Tiktok.png', link: 'https://www.tiktok.com/@dpigeon' },
+    { src: '/images/X.png', link: 'https://x.com/pigeond365?s=21' },
   ];
 
   // 每个图片的初始角度（均匀分布）
