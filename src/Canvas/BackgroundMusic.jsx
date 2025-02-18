@@ -3,7 +3,8 @@ import './MusicPlayer.css';
 
 const tracks = [
   { title: 'Умри, если меня не любишь', url: '/Audio/Умри, если меня не любишь.mp3' },
-  { title: 'Song 2', url: '/music/song2.mp3' },
+  { title: 'inhuman', url: '/Audio/inhuman.mp3' },
+  { title: 'Sad Ghost', url: '/Audio/Sad Ghost.mp3' },
 ];
 
 const MusicPlayer = () => {
@@ -251,7 +252,7 @@ const MusicPlayer = () => {
                   fontSize: '16px',
                 }}
               >
-                {isPlaying ? '暂停' : '播放'}
+                {isPlaying ? 'Stop' : 'Play'}
               </button>
               <button
                 onClick={handleNext}
@@ -265,7 +266,7 @@ const MusicPlayer = () => {
                   fontSize: '16px',
                 }}
               >
-                下一首
+                Next
               </button>
             </div>
             <button

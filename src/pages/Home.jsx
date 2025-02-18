@@ -6,7 +6,7 @@ function Home() {
       <div>
         <ParticleBackground />
         <h1 style={{ color: 'white', textAlign: 'center' }}>
-          Welcome to my website
+          Hey there!!
         </h1>
       </div>
       <div>
@@ -18,7 +18,7 @@ function Home() {
           />
         </a>
       </div>
-      <h1>Ding808</h1>
+      <h1>Welcome to my website!</h1>
     </>
   );
 }
