@@ -78,7 +78,7 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
             onMouseEnter={() => setHoveredButton('projects')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            Peojects
+            Projects
           </button>
         </li>
         <li style={styles.navItem}>

@@ -9,6 +9,7 @@ import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
+import MusicPlayer from './Canvas/BackgroundMusic';
 
 function App() {
   const [page, setPage] = useState('home');
@@ -42,6 +43,7 @@ function App() {
       {/* remder the page */}
       {renderPage()}
       {/* mouse effect */}
+      <MusicPlayer/>
       <CustomCursor />
     </>
   );

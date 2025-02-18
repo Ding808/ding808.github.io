@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import clickSoundSrc from '../assets/click.wav';
+import clickSoundSrc from '/Audio/click.wav';
 
 const CustomCursor = () => {
   // record mouse position
