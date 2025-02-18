@@ -4,7 +4,6 @@ function Home() {
   return (
     <>
       <div>
-        <ParticleBackground />
         <h1 style={{ color: 'white', textAlign: 'center' }}>
           Hey there!!
         </h1>

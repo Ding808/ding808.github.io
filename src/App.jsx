@@ -10,40 +10,46 @@ import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import MusicPlayer from './Canvas/BackgroundMusic';
+import ParticleBackground from './Canvas/ParticleBackground'; 
 
 function App() {
   const [page, setPage] = useState('home');
-  const [count, setCount] = useState(0);
 
-  // reder tha page
+  // 根据页面名称渲染对应页面组件
   const renderPage = () => {
     switch (page) {
       case 'home':
-        return <Home/>;
+        return <Home />;
       case 'skills':
-        return <Skills/>;
+        return <Skills />;
       case 'projects':
-        return <Projects/>
+        return <Projects />;
       case 'experience':
-        return <Experience/>
+        return <Experience />;
       case 'hobbies':
-        return <Hobbies/>
+        return <Hobbies />;
       case 'about':
-        return <About/>
+        return <About />;
       case 'contact':
-        return <Contact/>
+        return <Contact />;
+      default:
+        return <Home />;
     }
   };
 
   return (
     <>
-    {}
-      {/* navigation bar */}
+      {/* 粒子背景组件放在最外层 */}
+      <ParticleBackground />
+      
+      {/* 导航栏 */}
       <NavBar setPage={setPage} currentPage={page} />
-      {/* remder the page */}
+      
+      {/* 渲染页面 */}
       {renderPage()}
-      {/* mouse effect */}
-      <MusicPlayer/>
+
+      {/* 背景音乐和自定义光标 */}
+      <MusicPlayer />
       <CustomCursor />
     </>
   );

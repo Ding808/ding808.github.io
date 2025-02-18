@@ -5,10 +5,6 @@ function Contact() {
   return (
     <>
       <div>
-        <ParticleBackground />
-      </div>
-
-      <div>
         <a rel="noreferrer" href="/">
           <img
             src="/images/ProfileImage.jpg"
