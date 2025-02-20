@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import './MusicPlayer.css';
 
 const tracks = [
-  { title: 'Sway to My Beat in Cosmos', url: '/Audio/Sway to My Beat in Cosmos' },
+  { title: 'Sway to My Beat in Cosmos', url: '/Audio/Sway to My Beat in Cosmos.mp3' },
   { title: 'Умри, если меня не любишь', url: '/Audio/Умри, если меня не любишь.mp3' },
   { title: 'inhuman', url: '/Audio/inhuman.mp3' },
   { title: 'Sad Ghost', url: '/Audio/Sad Ghost.mp3' },
