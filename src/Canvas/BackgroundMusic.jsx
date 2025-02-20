@@ -5,6 +5,9 @@ const tracks = [
   { title: 'Умри, если меня не любишь', url: '/Audio/Умри, если меня не любишь.mp3' },
   { title: 'inhuman', url: '/Audio/inhuman.mp3' },
   { title: 'Sad Ghost', url: '/Audio/Sad Ghost.mp3' },
+  { title: 'Late Night Drive', url: '/Audio/Late Night Drive.mp3' },
+  { title: 'Клетка', url: '/Audio/Клетка.mp3' },
+  { title: 'El Vals Del Taco de Rana', url: '/Audio/El Vals Del Taco de Rana.mp3' },
 ];
 
 const MusicPlayer = () => {
