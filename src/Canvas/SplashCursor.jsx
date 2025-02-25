@@ -1,35 +1,31 @@
 'use client';
 import { useEffect, useRef } from 'react';
 
-function SplashCursor(
-  {
-    // You can customize these props if you want
-    SIM_RESOLUTION = 128,
-    DYE_RESOLUTION = 1440,
-    CAPTURE_RESOLUTION = 512,
-    DENSITY_DISSIPATION = 3.5,
-    VELOCITY_DISSIPATION = 2,
-    PRESSURE = 0.1,
-    PRESSURE_ITERATIONS = 20,
-    CURL = 3,
-    SPLAT_RADIUS = 0.2,
-    SPLAT_FORCE = 6000,
-    SHADING = true,
-    COLOR_UPDATE_SPEED = 10,
-    BACK_COLOR = { r: 0.5, g: 0, b: 0 },
-    TRANSPARENT = true
-  }
-) {
+function SplashCursor({
+  SIM_RESOLUTION = 128,
+  DYE_RESOLUTION = 1440,
+  CAPTURE_RESOLUTION = 512,
+  DENSITY_DISSIPATION = 3.5,
+  VELOCITY_DISSIPATION = 2,
+  PRESSURE = 0.1,
+  PRESSURE_ITERATIONS = 20,
+  CURL = 3,
+  SPLAT_RADIUS = 0.2,
+  SPLAT_FORCE = 6000,
+  SHADING = true,
+  COLOR_UPDATE_SPEED = 10,
+  BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+  TRANSPARENT = true,
+}) {
   const canvasRef = useRef(null);
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // 定义局部变量保存动画帧 ID
     let animationFrameId;
 
-    // 将事件监听器定义为具名函数，便于后续注销
+    // 注册所有事件监听器所用的具名函数，方便后续注销
     const handleMouseDown = (e) => {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
@@ -43,7 +39,7 @@ function SplashCursor(
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       let color = generateColor();
-      updateFrame(); // start animation loop
+      updateFrame(); // 启动动画循环
       updatePointerMoveData(pointer, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
     };
@@ -62,7 +58,7 @@ function SplashCursor(
       for (let i = 0; i < touches.length; i++) {
         let posX = scaleByPixelRatio(touches[i].clientX);
         let posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame(); // start animation loop
+        updateFrame(); // 启动动画循环
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
@@ -96,7 +92,7 @@ function SplashCursor(
       }
     };
 
-    // 原有代码开始
+    // 定义 pointer 原型
     function pointerPrototype() {
       this.id = -1;
       this.texcoordX = 0;
@@ -110,6 +106,7 @@ function SplashCursor(
       this.color = [0, 0, 0];
     }
 
+    // 定义配置项对象
     let config = {
       SIM_RESOLUTION,
       DYE_RESOLUTION,
@@ -1172,7 +1169,7 @@ function SplashCursor(
       return hash;
     }
 
-    // 注册事件监听器
+    // 注册全局事件监听器
     window.addEventListener('mousedown', handleMouseDown);
     document.body.addEventListener('mousemove', handleFirstMouseMove);
     window.addEventListener('mousemove', handleMouseMove);
@@ -1182,7 +1179,7 @@ function SplashCursor(
     window.addEventListener('touchend', handleTouchEnd);
 
     updateFrame();
-    // 清理函数，仅注销本组件注册的监听和动画帧
+    // 清理函数：取消动画帧并注销所有事件监听器
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousedown', handleMouseDown);
@@ -1193,23 +1190,7 @@ function SplashCursor(
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    SIM_RESOLUTION,
-    DYE_RESOLUTION,
-    CAPTURE_RESOLUTION,
-    DENSITY_DISSIPATION,
-    VELOCITY_DISSIPATION,
-    PRESSURE,
-    PRESSURE_ITERATIONS,
-    CURL,
-    SPLAT_RADIUS,
-    SPLAT_FORCE,
-    SHADING,
-    COLOR_UPDATE_SPEED,
-    BACK_COLOR,
-    TRANSPARENT,
-  ]);
+  }, []); // 空依赖数组：仅在首次挂载时运行
 
   return (
     <div
