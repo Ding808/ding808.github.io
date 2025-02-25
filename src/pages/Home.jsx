@@ -1,11 +1,24 @@
 import ParticleBackground from '../Canvas/ParticleBackground'; 
+import BlurText from "../Canvas/BlurText";
+const handleAnimationComplete = () => {
+  console.log('Animation completed!');
+};
+
+
 
 function Home() {
   return (
     <>
       <div>
         <h1 style={{ color: 'white', textAlign: 'center' }}>
-          Hey there!!
+          <BlurText
+              text="Hey there !!"
+              delay={150}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="text-2xl mb-8"
+            />
         </h1>
       </div>
       <div>
@@ -17,7 +30,14 @@ function Home() {
           />
         </a>
       </div>
-      <h1>Welcome to my website!</h1>
+      <h1><BlurText
+            text="Welcome to my own Portfolio Website !!!"
+            delay={150}
+            animateBy="words"
+            direction="top"
+            onAnimationComplete={handleAnimationComplete}
+            className="text-2xl mb-8"
+          /></h1>
     </>
   );
 }

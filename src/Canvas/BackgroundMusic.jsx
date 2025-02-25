@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import './MusicPlayer.css';
 
 const tracks = [
+  { title: 'Late Night Drive', url: '/Audio/Late Night Drive.mp3' },
   { title: 'Sway to My Beat in Cosmos', url: '/Audio/Sway to My Beat in Cosmos.mp3' },
   { title: 'Умри, если меня не любишь', url: '/Audio/Умри, если меня не любишь.mp3' },
   { title: 'inhuman', url: '/Audio/inhuman.mp3' },
   { title: 'Sad Ghost', url: '/Audio/Sad Ghost.mp3' },
-  { title: 'Late Night Drive', url: '/Audio/Late Night Drive.mp3' },
   { title: 'Клетка', url: '/Audio/Клетка.mp3' },
   { title: 'El Vals Del Taco de Rana', url: '/Audio/El Vals Del Taco de Rana.mp3' },
   { title: 'Hope Is the Thing With Feathers', url: '/Audio/Hope Is the Thing With Feathers.mp3' },
@@ -45,7 +45,7 @@ const MusicPlayer = () => {
           setIsPlaying(true);
         })
         .catch((err) => {
-          console.log('播放失败:', err);
+          console.log('play error:', err);
         });
     }
   }, [currentTrackIndex]);
@@ -93,7 +93,7 @@ const MusicPlayer = () => {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().catch((err) => console.log('播放错误:', err));
+      audioRef.current.play().catch((err) => console.log('play error:', err));
       setIsPlaying(true);
     }
   };
@@ -132,7 +132,7 @@ const MusicPlayer = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = newTime;
       if (isPlaying && audioRef.current.paused) {
-        audioRef.current.play().catch((err) => console.log('播放错误:', err));
+        audioRef.current.play().catch((err) => console.log('play error:', err));
       }
     }
     setProgress(newTime);
@@ -316,7 +316,7 @@ const MusicPlayer = () => {
 
           {/* 音量调节 */}
           <div>
-            <label style={{ fontSize: '12px', marginRight: '5px' }}>音量:</label>
+            <label style={{ fontSize: '12px', marginRight: '5px' }}>Volume:</label>
             <input
               type="range"
               min="0"

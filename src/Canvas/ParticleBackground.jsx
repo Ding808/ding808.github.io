@@ -101,8 +101,10 @@ const ParticleBackground = () => {
       }
     };
 
+    let animationFrameId; // 用于保存动画帧 ID
+
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach((particle) => particle.update());
@@ -121,6 +123,7 @@ const ParticleBackground = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId); // 取消动画帧，清理资源
     };
   }, []);
 
@@ -131,7 +134,7 @@ const ParticleBackground = () => {
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: -1, 
+        zIndex: -1,
         background: '#000'
       }}
     ></canvas>

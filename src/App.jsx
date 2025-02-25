@@ -11,6 +11,8 @@ import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import MusicPlayer from './Canvas/BackgroundMusic';
 import ParticleBackground from './Canvas/ParticleBackground'; 
+import SplashCursor from './Canvas/SplashCursor'
+
 
 function App() {
   const [page, setPage] = useState('home');
@@ -40,6 +42,7 @@ function App() {
   return (
     <>
       {/* 粒子背景组件放在最外层 */}
+      <SplashCursor />
       <ParticleBackground />
       
       {/* 导航栏 */}
