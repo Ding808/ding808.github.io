@@ -13,6 +13,8 @@ import MusicPlayer from './Canvas/BackgroundMusic';
 import ParticleBackground from './Canvas/ParticleBackground'; 
 import SplashCursor from './Canvas/SplashCursor'
 
+import Lanyard from './Canvas/Lanyard.jsx'
+
 
 function App() {
   const [page, setPage] = useState('home');
@@ -43,6 +45,7 @@ function App() {
     <>
       {/* 粒子背景组件放在最外层 */}
       <SplashCursor />
+      <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
       <ParticleBackground />
       
       {/* 导航栏 */}

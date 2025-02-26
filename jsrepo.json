@@ -1,11 +1,11 @@
 {
-  "$schema": "https://unpkg.com/jsrepo@1.40.1/schemas/project-config.json",
+  "$schema": "https://unpkg.com/jsrepo@1.41.2/schemas/project-config.json",
   "repos": ["https://reactbits.dev/default"],
   "includeTests": false,
   "watermark": true,
   "formatter": "prettier",
   "configFiles": {},
   "paths": {
-    "*": "./Users/d_d/Desktop/个人网页"
+    "*": "./public/src/Canvas"
   }
 }
