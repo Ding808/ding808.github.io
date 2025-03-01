@@ -15,12 +15,14 @@ const tracks = [
 
 const MusicPlayer = () => {
   const audioRef = useRef(null);
+  // 用于区分首次加载和切换音乐时
+  const isFirstLoad = useRef(true);
 
-  // 状态管理
+  // 初始状态：最小化、默认曲目索引0、不自动播放、音量中等0.5
   const [isMinimized, setIsMinimized] = useState(true);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [volume, setVolume] = useState(1);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playbackMode, setPlaybackMode] = useState('order');
@@ -32,21 +34,21 @@ const MusicPlayer = () => {
     }
   }, [volume]);
 
-  // 切换歌曲时更新 src 并自动播放（利用 muted 绕过自动播放限制）
+  // 切换歌曲时更新 src，并区分首次加载与后续切换
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = tracks[currentTrackIndex].url;
-      audioRef.current.muted = true;
-      audioRef.current
-        .play()
-        .then(() => {
-          // 播放成功后取消静音
-          audioRef.current.muted = false;
-          setIsPlaying(true);
-        })
-        .catch((err) => {
-          console.log('play error:', err);
-        });
+      setProgress(0);
+      if (isFirstLoad.current) {
+        // 首次加载时不自动播放
+        isFirstLoad.current = false;
+      } else {
+        // 切换音乐时自动播放，并更新播放状态
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.log('play error:', err));
+      }
     }
   }, [currentTrackIndex]);
 
@@ -93,12 +95,14 @@ const MusicPlayer = () => {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().catch((err) => console.log('play error:', err));
-      setIsPlaying(true);
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.log('play error:', err));
     }
   };
 
-  // 下一首处理
+  // 下一首处理，切换音乐后自动播放
   const handleNext = () => {
     if (!audioRef.current) return;
 
@@ -113,8 +117,10 @@ const MusicPlayer = () => {
       }
       case 'single':
         audioRef.current.currentTime = 0;
-        audioRef.current.play();
-        setIsPlaying(true);
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.log('play error:', err));
         return;
       case 'order':
       default: {
@@ -123,7 +129,7 @@ const MusicPlayer = () => {
         break;
       }
     }
-    setIsPlaying(true);
+    // 切换曲目后 useEffect 会自动调用 play()，确保自动播放
   };
 
   // 拖动进度条时更新当前播放时间
@@ -258,7 +264,7 @@ const MusicPlayer = () => {
                   fontSize: '16px',
                 }}
               >
-                {isPlaying ? 'Stop' : 'Play'}
+                {isPlaying ? 'Stop' : 'Start'}
               </button>
               <button
                 onClick={handleNext}

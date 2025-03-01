@@ -39,6 +39,7 @@ const SkillPage = () => {
       style={{
         color: '#fff',         // 文字颜色白色
         padding: '2rem',
+        overflowX: 'hidden',
       }}
     >
       <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>My Skills</h1>
