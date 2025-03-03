@@ -1,62 +1,95 @@
-/* 全局样式 */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
+/* 整个容器 */
+.services-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+  color: #333;
+  position: relative;
+}
+
+/* 标题：前景文字 + 背景大字 */
+.services-title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title-foreground {
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+}
+
+.title-background {
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.06);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 宫格：2 行 x 3 列 */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px; /* 卡片之间的间距 */
+}
+
+/* 卡片主体：黑色背景 + 白字 + 3D 伪元素阴影 */
+.service-card {
+  position: relative; /* 让伪元素定位在内部 */
+  background: #111;   /* 不透明的黑色背景 */
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* 用伪元素来做绿色阴影层（完全不透明也可以，按需设置） */
+.service-card::before {
+  content: "";
+  position: absolute;
+  /* 让阴影稍微比卡片大一点，并偏移到右下方 */
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00ff00; /* 绿色。如果想半透明可以改为 rgba(0,255,0,0.3) */
+  border-radius: 8px;
+  z-index: -1; /* 在卡片下方 */
+  /* 初始位置稍微向右下偏移，产生一点 3D 感 */
+  transform: translate(8px, 8px);
+  transition: transform 0.3s ease;
+  filter: blur(2px); /* 可选，让阴影更柔和 */
+}
+
+/* 悬停时卡片往左上移动一点，阴影往右下移动更多，产生分离感 */
+.service-card:hover {
+  transform: translate(-5px, -5px);
+}
+.service-card:hover::before {
+  transform: translate(12px, 12px);
+}
+
+/* 响应式：平板/手机布局 */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 平板时 2 列 */
   }
-  
-  /* 容器横向排列 */
-  .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 2rem;
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* 手机时 1 列 */
   }
-  
-  /* Section 样式 */
-  .section {
-    flex: 1;
-    margin: 1rem;
-    padding: 1.5rem;
-    border: 2px solid #fff;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    animation: fadeInUp 1s ease-out;
-  }
-  
-  .section:hover {
-    transform: scale(1.02);
-    border-color: #00ff00;
-  }
-  
-  /* 列表样式 */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .skill-item {
-    padding: 0.5rem 0;
-    transition: transform 0.2s ease;
-  }
-  
-  .skill-item:hover {
-    transform: translateX(10px);
-  }
-  
-  /* 动画效果 */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}
