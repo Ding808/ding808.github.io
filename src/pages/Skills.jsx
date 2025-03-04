@@ -4,12 +4,12 @@ import './SkillPage.css';
 const Services = () => {
   // 示例数据
   const servicesData = [
-    { id: 1, title: 'Web Design', description: '这里是 Web Design 的描述...' },
-    { id: 2, title: 'Photography', description: '这里是 Photography 的描述...' },
-    { id: 3, title: 'Web Developer', description: '这里是 Web Developer 的描述...' },
-    { id: 4, title: 'Branding', description: '这里是 Branding 的描述...' },
-    { id: 5, title: 'App Developing', description: '这里是 App Developing 的描述...' },
-    { id: 6, title: 'Product Strategy', description: '这里是 Product Strategy 的描述...' },
+    { id: 1, title: 'Programming Language', description: 'The description of my programming language' },
+    { id: 2, title: 'Language', description: 'The description of my language skills' },
+    { id: 3, title: '', description: '' },
+    { id: 4, title: '', description: '' },
+    { id: 5, title: '', description: '' },
+    { id: 6, title: '', description: '' },
   ];
 
   return (
