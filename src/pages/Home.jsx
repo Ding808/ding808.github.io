@@ -30,7 +30,7 @@ function Home() {
           />
         </a>
       </div>
-      <h1><BlurText
+      <h1 style={{ color: 'white', textAlign: 'center' }}><BlurText
             text="Welcome to my own Portfolio Website !!!"
             delay={150}
             animateBy="words"
