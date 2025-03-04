@@ -71,6 +71,7 @@
   flex-direction: column;
   justify-content: center;
   transition: background-color 0.5s ease;
+  transition: transform 0.3s ease-in-out; /* 让移动动画双向生效 */
 }
 
 /* 卡片伪元素：绿色阴影 */
@@ -85,13 +86,14 @@
   border-radius: 8px;
   z-index: 1;
   transform: translate(8px, 8px);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   filter: blur(2px);
 }
 
 /* 悬停效果 */
 .skill-card:hover .card-inner {
   transform: translate(-5px, -5px);
+  transition: transform 0.3s ease-in-out; /* 添加平滑过渡动画 */
 }
 .skill-card:hover::before {
   transform: translate(12px, 12px);
