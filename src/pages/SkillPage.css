@@ -103,22 +103,26 @@
 
 /* 1. 被点击的卡片向目标标题位置移动 */
 /* 修改关键在于使用 CSS 自定义属性来动态设置目标位移 */
-@keyframes moveToTitle {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(var(--target-x, 0), var(--target-y, -200px)) scale(1);
-  }
-}
-.animate-to-title {
-  z-index: 999;
-  animation: moveToTitle 0.5s forwards;
-}
-.animate-to-title::before{
-  opacity: 0;
-}
+/* 省略其他样式 */
 
+/* 修改动画关键帧：直接使用计算的自定义属性 */
+@keyframes moveToTitle {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      transform: translate(var(--target-x), var(--target-y)) scale(1);
+    }
+  }
+  
+  .animate-to-title {
+    z-index: 999;
+    animation: moveToTitle 0.5s forwards;
+  }
+  .animate-to-title::before {
+    opacity: 0;
+  }
+  
 
 /* 2. 被点击卡片内部描述文字渐隐 */
 @keyframes fadeOutDescription {
@@ -131,9 +135,11 @@
 
 /* 3. 被点击卡片内标题字体变大 (与详情页标题相同) */
 .card-inner h3 {
-  font-size: 1.2rem;
-  transition: font-size 0.5s ease;
-}
+    white-space: nowrap;   /* 不自动换行 */
+    overflow: hidden;      /* 如果宽度不够，则隐藏超出部分 */
+    text-overflow: ellipsis; /* 可选：让溢出文字显示省略号 */
+  }
+  
 .animate-to-title .card-inner h3 {
   font-size: 2.5rem;
 }
@@ -159,7 +165,7 @@
 /* 详情视图 */
 .skill-detail {
   position: fixed;
-  top: 54px;
+  top: 60px;
   right: 5px;
   width: 100%;
   height: 100vh;
@@ -180,15 +186,16 @@
 
 /* 详情页标题位置，与卡片动画结束时保持一致 */
 .detail-header {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.detail-header h3 {
-  font-size: 2.5rem;
-  margin: 0;
-}
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .detail-header h3 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
 
 .detail-content {
   margin-top: 150px;

@@ -18,14 +18,13 @@ const Skills = () => {
   const handleCardClick = (skill, event) => {
     // 防止重复点击
     if (animatingSkill) return;
-    // 获取点击卡片的边界信息
     const cardRect = event.currentTarget.getBoundingClientRect();
-    // 目标：详情页标题的位置：水平居中（窗口宽度一半），垂直距离为 50px
+    // 目标：详情页标题位置：水平居中，垂直距离为 50px
     const targetX = window.innerWidth / 2 - (cardRect.left + cardRect.width / 2);
     const targetY = 50 - cardRect.top;
     // 将偏移量存入 animatingSkill 对象中
     setAnimatingSkill({ ...skill, offsetX: targetX, offsetY: targetY });
-    // 等待动画结束（与CSS动画时长0.5s一致），再显示详情页
+    // 等待动画结束（0.5s），再显示详情页
     setTimeout(() => {
       setSelectedSkill(skill);
       setAnimatingSkill(null);
@@ -51,7 +50,6 @@ const Skills = () => {
         // 详情视图
         <div className="skill-detail show">
           <div className="detail-header">
-            {/* 这个标题位置、大小要和卡片动画结束时保持一致 */}
             <h3>{selectedSkill.title}</h3>
           </div>
           <div className="detail-content">
@@ -61,7 +59,7 @@ const Skills = () => {
           <button className="back-button" onClick={handleBackClick}>Back</button>
         </div>
       ) : (
-        // 网格视图：始终渲染所有卡片，但在动画状态下为被点击和未点击的卡片添加不同的类
+        // 网格视图
         <div className="skills-grid">
           {skillsData.map((skill) => {
             let cardClass = "skill-card";
