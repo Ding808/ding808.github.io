@@ -1,40 +1,52 @@
 // NavBar.jsx
-import React, { useRef, useEffect, useState } from 'react';
-
+import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
+import ShinyText from './ShinyText.jsx';
+  
 const NavBar = ({ setPage, currentPage, onHomeRef }) => {
-  // create the ref
   const buttonRefs = {
     home: useRef(null),
+    about: useRef(null),
     skills: useRef(null),
     projects: useRef(null),
-    experience: useRef(null),
-    hobbies: useRef(null),
-    about: useRef(null),
     contact: useRef(null)
   };
 
-  // store the indication style
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
-  //mouse hoving reaction
   const [hoveredButton, setHoveredButton] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
+  // 确保在 DOM 渲染后同步获取布局信息
+  useLayoutEffect(() => {
     if (onHomeRef) {
       onHomeRef(buttonRefs.home);
     }
   }, [onHomeRef]);
 
-  // update width and height
-  useEffect(() => {
+  // 根据当前激活按钮更新指示器的位置和宽度
+  useLayoutEffect(() => {
     const activeButton = buttonRefs[currentPage]?.current;
     if (activeButton) {
       const { offsetLeft, offsetWidth } = activeButton;
       setIndicatorStyle({ left: offsetLeft, width: offsetWidth });
     }
-  }, [currentPage]);
+  }, [currentPage, hoveredButton]);
+
+  // 监听滚动事件，根据 scrollY 更新 isScrolled 状态
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav style={styles.nav}>
+    <nav style={isScrolled ? { ...styles.nav, ...styles.navScrolled } : styles.nav}>
       <ul style={styles.navList}>
         <li style={styles.navItem}>
           <button
@@ -48,67 +60,12 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
             onMouseEnter={() => setHoveredButton('home')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            Home
-          </button>
-        </li>
-        <li style={styles.navItem}>
-          <button
-            ref={buttonRefs.skills}
-            style={{
-              ...styles.navButton,
-              ...(currentPage === 'skills' ? styles.activeButton : {}),
-              ...(hoveredButton === 'skills' ? styles.hoveredButton : {}),
-            }}
-            onClick={() => setPage('skills')}
-            onMouseEnter={() => setHoveredButton('skills')}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            Skills
-          </button>
-        </li>
-        <li style={styles.navItem}>
-          <button
-            ref={buttonRefs.projects}
-            style={{
-              ...styles.navButton,
-              ...(currentPage === 'projects' ? styles.activeButton : {}),
-              ...(hoveredButton === 'projects' ? styles.hoveredButton : {}),
-            }}
-            onClick={() => setPage('projects')}
-            onMouseEnter={() => setHoveredButton('projects')}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            Projects
-          </button>
-        </li>
-        <li style={styles.navItem}>
-          <button
-            ref={buttonRefs.experience}
-            style={{
-              ...styles.navButton,
-              ...(currentPage === 'experience' ? styles.activeButton : {}),
-              ...(hoveredButton === 'experience' ? styles.hoveredButton : {}),
-            }}
-            onClick={() => setPage('experience')}
-            onMouseEnter={() => setHoveredButton('experience')}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            Experience
-          </button>
-        </li>
-        <li style={styles.navItem}>
-          <button
-            ref={buttonRefs.hobbies}
-            style={{
-              ...styles.navButton,
-              ...(currentPage === 'hobbies' ? styles.activeButton : {}),
-              ...(hoveredButton === 'hobbies' ? styles.hoveredButton : {}),
-            }}
-            onClick={() => setPage('hobbies')}
-            onMouseEnter={() => setHoveredButton('hobbies')}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            Hobbies
+            <ShinyText 
+              text="Home" 
+              disabled={false} 
+              speed={3} 
+              className="custom-class" 
+            />
           </button>
         </li>
         <li style={styles.navItem}>
@@ -123,7 +80,52 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
             onMouseEnter={() => setHoveredButton('about')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            About
+            <ShinyText 
+              text="About" 
+              disabled={false} 
+              speed={3} 
+              className="custom-class" 
+            />
+          </button>
+        </li>
+        <li style={styles.navItem}>
+          <button
+            ref={buttonRefs.skills}
+            style={{
+              ...styles.navButton,
+              ...(currentPage === 'skills' ? styles.activeButton : {}),
+              ...(hoveredButton === 'skills' ? styles.hoveredButton : {}),
+            }}
+            onClick={() => setPage('skills')}
+            onMouseEnter={() => setHoveredButton('skills')}
+            onMouseLeave={() => setHoveredButton(null)}
+          >
+            <ShinyText 
+              text="Skills" 
+              disabled={false} 
+              speed={3} 
+              className="custom-class" 
+            />
+          </button>
+        </li>
+        <li style={styles.navItem}>
+          <button
+            ref={buttonRefs.projects}
+            style={{
+              ...styles.navButton,
+              ...(currentPage === 'projects' ? styles.activeButton : {}),
+              ...(hoveredButton === 'projects' ? styles.hoveredButton : {}),
+            }}
+            onClick={() => setPage('projects')}
+            onMouseEnter={() => setHoveredButton('projects')}
+            onMouseLeave={() => setHoveredButton(null)}
+          >
+            <ShinyText 
+              text="Projects" 
+              disabled={false} 
+              speed={3} 
+              className="custom-class" 
+            />
           </button>
         </li>
         <li style={styles.navItem}>
@@ -138,10 +140,14 @@ const NavBar = ({ setPage, currentPage, onHomeRef }) => {
             onMouseEnter={() => setHoveredButton('contact')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            Contact
+            <ShinyText 
+              text="Contact" 
+              disabled={false} 
+              speed={3} 
+              className="custom-class" 
+            />
           </button>
         </li>
-        {}
         <div
           style={{
             ...styles.indicator,
@@ -161,13 +167,23 @@ const styles = {
     left: 0,
     width: '100%',
     zIndex: 1000,
-    background: 'rgba(0, 0, 0, 0)',
+    background: 'rgba(0, 0, 0, 0)', // 初始背景透明
     padding: '10px 20px',
     backdropFilter: 'blur(0px)',
+    display: 'flex',
+    justifyContent: 'center',
+    transition: 'all 0.3s ease',
+  },
+  navScrolled: {
+    padding: '5px 20px', // 缩小后的 padding
+    background: 'rgba(0, 0, 0, 0.7)', // 滚动时增加背景色
+    backdropFilter: 'blur(5px)',
   },
   navList: {
     listStyle: 'none',
     display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
     gap: '20px',
     margin: 0,
     padding: 0,
