@@ -1,0 +1,24 @@
+.fadeInBackground {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;       /* 比页面小一些 */
+    height: 90%;      /* 可根据需要调整 */
+    background-color: rgba(128, 128, 128, 0.5);  /* 半透明灰色 */
+    border-radius: 15px;  /* 圆润边角 */
+    z-index: 1;
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 20%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+  
