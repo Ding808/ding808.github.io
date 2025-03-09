@@ -15,9 +15,9 @@ function Home() {
       {/* 内容层，z-index比背景高 */}
       <div style={{ position: 'relative', zIndex: 2 }}>
         <div>
-          <h1 style={{ color: 'white', textAlign: 'center' }}>
+          <h1 style={{ color: 'white', textAlign: 'left' }}>
             <BlurText
-              text="Hey there !!"
+              text="👋 Hey there this is Ding!!"
               delay={150}
               animateBy="words"
               direction="top"
