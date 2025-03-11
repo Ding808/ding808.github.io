@@ -22,15 +22,14 @@ a:hover {
   color: #535bf2;
 }
 
+/* 修改 body 样式，使其宽度与屏幕一致 */
 body {
-  overflow-x: hidden; 
+  overflow-x: hidden;
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: transparent
-  
+  width: 100%;      /* 占满全屏宽度 */
+  background-color: transparent;
 }
 
 h1 {
