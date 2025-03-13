@@ -1,112 +1,106 @@
 /* 整体容器 */
 .skills-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 0;
-  color: rgb(76, 76, 76);
-  position: relative;
-}
-
-/* 标题区域 */
-.skills-title {
-  position: relative;
-  text-align: center;
-  margin-bottom: 40px;
-  transition: opacity 0.5s ease;
-}
-.skills-title.fade-out {
-  opacity: 0;
-}
-
-.title-foreground {
-  font-size: 2.5rem;
-  font-weight: 700;
-  position: relative;
-  z-index: 2;
-  margin: 0;
-}
-
-.title-background {
-  font-size: 5rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.06);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* 网格卡片布局：2行 x 3列 */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
-}
-
-/* 卡片基本样式 */
-.skill-card {
-  position: relative;
-  cursor: pointer;
-  height: 250px;
-  transition: opacity 0.5s ease;
-}
-
-/* 卡片内部容器 */
-.card-inner {
-  background: #111;
-  color: #fff;
-  padding: 30px 20px;
-  text-align: center;
-  border-radius: 8px;
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: background-color 0.5s ease;
-  transition: transform 0.3s ease-in-out; /* 让移动动画双向生效 */
-}
-
-/* 卡片伪元素：绿色阴影 */
-.skill-card::before {
-  content: "";
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #00ff00;
-  border-radius: 8px;
-  z-index: 1;
-  transform: translate(8px, 8px);
-  transition: transform 0.3s ease-in-out;
-  filter: blur(2px);
-}
-
-/* 悬停效果 */
-.skill-card:hover .card-inner {
-  transform: translate(-5px, -5px);
-  transition: transform 0.3s ease-in-out; /* 添加平滑过渡动画 */
-}
-.skill-card:hover::before {
-  transform: translate(12px, 12px);
-}
-
-/* 点击卡片后的动画效果 */
-
-/* 1. 被点击的卡片向目标标题位置移动 */
-/* 修改关键在于使用 CSS 自定义属性来动态设置目标位移 */
-/* 省略其他样式 */
-
-/* 修改动画关键帧：直接使用计算的自定义属性 */
-@keyframes moveToTitle {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+    color: rgb(76, 76, 76);
+    position: relative;
+  }
+  
+  /* 标题区域 */
+  .skills-title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+    transition: opacity 0.5s ease;
+  }
+  .skills-title.fade-out {
+    opacity: 0;
+  }
+  
+  .title-foreground {
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+  }
+  
+  .title-background {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.06);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* 网格卡片布局：2行 x 3列 */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
+  
+  /* 卡片基本样式 */
+  .skill-card {
+    position: relative;
+    cursor: pointer;
+    height: 250px;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* 卡片内部容器 */
+  .card-inner {
+    background: #111;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background-color 0.5s ease;
+    transition: transform 0.3s ease-in-out; /* 让移动动画双向生效 */
+  }
+  
+  /* 卡片伪元素：绿色阴影 */
+  .skill-card::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00ff00;
+    border-radius: 8px;
+    z-index: 1;
+    transform: translate(8px, 8px);
+    transition: transform 0.3s ease-in-out;
+    filter: blur(2px);
+  }
+  
+  /* 悬停效果 */
+  .skill-card:hover .card-inner {
+    transform: translate(-5px, -5px);
+    transition: transform 0.3s ease-in-out;
+  }
+  .skill-card:hover::before {
+    transform: translate(12px, 12px);
+  }
+  
+  /* 点击卡片后的动画效果 */
+  @keyframes moveToTitle {
     0% {
       transform: translate(0, 0) scale(1);
     }
@@ -123,69 +117,68 @@
     opacity: 0;
   }
   
-
-/* 2. 被点击卡片内部描述文字渐隐 */
-@keyframes fadeOutDescription {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-.animate-to-title .card-inner p {
-  animation: fadeOutDescription 0.5s forwards;
-}
-
-/* 3. 被点击卡片内标题字体变大 (与详情页标题相同) */
-.card-inner h3 {
-    white-space: nowrap;   /* 不自动换行 */
-    overflow: hidden;      /* 如果宽度不够，则隐藏超出部分 */
-    text-overflow: ellipsis; /* 可选：让溢出文字显示省略号 */
+  /* 被点击卡片内部描述文字渐隐 */
+  @keyframes fadeOutDescription {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .animate-to-title .card-inner p {
+    animation: fadeOutDescription 0.5s forwards;
   }
   
-.animate-to-title .card-inner h3 {
-  font-size: 2.5rem;
-}
-@keyframes fadeOutBackgroundColor {
-  0% {
-    background-color: rgba(17, 17, 17, 1);
+  /* 被点击卡片内标题字体变大 (与详情页标题相同) */
+  .card-inner h3 {
+    white-space: nowrap;   /* 不自动换行 */
+    overflow: hidden;      /* 如果宽度不够，则隐藏超出部分 */
+    text-overflow: ellipsis; 
   }
-  100% {
-    background-color: rgba(17, 17, 17, 0);
+  
+  .animate-to-title .card-inner h3 {
+    font-size: 2.5rem;
   }
-}
-
-.animate-to-title .card-inner {
-  animation: fadeOutBackgroundColor 0.5s forwards;
-}
-
-
-/* 4. 未点击的卡片和其它元素淡出 */
-.fade-out {
-  opacity: 0;
-}
-
-/* 详情视图 */
-.skill-detail {
-  position: fixed;
-  top: 60px;
-  right: 5px;
-  width: 100%;
-  height: 100vh;
-  color: #fff;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index:1000;
-}
-.skill-detail.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 详情页标题位置，与卡片动画结束时保持一致 */
-.detail-header {
+  
+  @keyframes fadeOutBackgroundColor {
+    0% {
+      background-color: rgba(17, 17, 17, 1);
+    }
+    100% {
+      background-color: rgba(17, 17, 17, 0);
+    }
+  }
+  
+  .animate-to-title .card-inner {
+    animation: fadeOutBackgroundColor 0.5s forwards;
+  }
+  
+  /* 未点击的卡片淡出 */
+  .fade-out {
+    opacity: 0;
+  }
+  
+  /* 详情视图 */
+  .skill-detail {
+    position: fixed;
+    top: 60px;
+    right: 5px;
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .skill-detail.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* 详情页标题位置，与卡片动画结束时保持一致 */
+  .detail-header {
     position: absolute;
     top: 50px;
     left: 50%;
@@ -196,33 +189,111 @@
     margin: 0;
   }
   
-
-.detail-content {
-  margin-top: 150px;
-  max-width: 600px;
-  text-align: center;
-}
-
-.back-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #fff;
-  color: #111;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* 响应式布局 */
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .detail-content {
+    margin-top: 150px;
+    max-width: 600px;
+    text-align: center;
   }
-}
-@media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
+  
+  .back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    color: #111;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
   }
-}
+  
+  /* 响应式布局 */
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+/* ========== 以下为语言进度条示例样式（修改后，带额外间距） ========== */
+
+/* 将语言进度条容器固定居中，并增加内边距 */
+.language-list {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    margin: 0; /* 重置外边距 */
+    padding: 20px;  /* 增加内边距 */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;  /* 增大子项之间的间距 */
+  }
+  
+  /* 单项：增加垂直内边距 */
+  .language-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards;
+    padding: 10px 0;  /* 每个项目上下各加10px间距 */
+  }
+  
+  /* 修改：增大语言名称的宽度和字体 */
+  .language-name {
+    min-width: 80px; /* 原来是60px */
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  /* 修改：增大进度条外框尺寸 */
+  .progress-bar {
+    flex: 1;
+    background: #333;
+    height: 20px;  /* 原来是10px */
+    border-radius: 10px; /* 圆角也相应调整 */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* 进度条本体保持不变 */
+  .progress {
+    background-color: #ff9800;
+    height: 100%;
+    width: 0%;
+    transition: width 1s ease-in-out;
+  }
+  
+  /* 动画类保持不变 */
+  .progress-animate {
+    /* 此处宽度由JS通过 inline-style 控制 */
+  }
+  
+  /* 修改：增大语言百分比的宽度和字体 */
+  .language-level {
+    width: 60px; /* 原来是50px */
+    text-align: left;
+    font-size: 1.2rem;
+  }
+  
+  /* 淡入 + 上移动画关键帧保持不变 */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

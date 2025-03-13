@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SkillPage.css';
 
 const Skills = () => {
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [animatingSkill, setAnimatingSkill] = useState(null);
+
+  // 额外的状态，用于触发进度条动画
+  const [showLanguageBars, setShowLanguageBars] = useState(false);
 
   // 示例数据
   const skillsData = [
@@ -13,6 +16,18 @@ const Skills = () => {
     { id: 4, title: 'Skill 4', description: 'Description for skill 4' },
     { id: 5, title: 'Skill 5', description: 'Description for skill 5' },
     { id: 6, title: 'Skill 6', description: 'Description for skill 6' },
+  ];
+
+  // 语言进度条示例数据（可自由修改）
+  const languageProgress = [
+    { name: 'Mandarin', level: 100 },
+    { name: 'Wu', level: 75 },
+    { name: 'English', level: 70 },
+    { name: 'Cantonese', level: 50 },
+    { name: 'Spanish', level: 20 },
+    { name: 'Japanses', level: 10 },
+    { name: 'Russian', level: 2 },
+    { name: 'German', level: 1 },
   ];
 
   const handleCardClick = (skill, event) => {
@@ -34,7 +49,19 @@ const Skills = () => {
   const handleBackClick = () => {
     // 返回时恢复初始状态
     setSelectedSkill(null);
+    setShowLanguageBars(false); // 隐藏进度条
   };
+
+  // 当进入详情时，如果是「Language」技能，则触发进度条动画
+  useEffect(() => {
+    if (selectedSkill?.title === 'Language') {
+      // 给一点延迟，让详情页先淡入，再启动动画
+      const timer = setTimeout(() => {
+        setShowLanguageBars(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedSkill]);
 
   return (
     <section className="skills-container">
@@ -53,8 +80,31 @@ const Skills = () => {
             <h3>{selectedSkill.title}</h3>
           </div>
           <div className="detail-content">
-            <p>{selectedSkill.description}</p>
-            <p>Detail message...</p>
+            {/* 在这里插入语言进度条示例 */}
+            {selectedSkill.title === 'Language' && (
+              <div className="language-list">
+                {languageProgress.map((lang, index) => (
+                  <div
+                    key={lang.name}
+                    className="language-item"
+                    style={{ animationDelay: `${0.2 * index}s` }}
+                  >
+                    <div className="language-name">{lang.name}</div>
+                    <div className="progress-bar">
+                      <div
+                        className={`progress ${showLanguageBars ? 'progress-animate' : ''}`}
+                        style={{
+                          width: showLanguageBars ? `${lang.level}%` : '0%',
+                          animationDelay: `${0.2 * index}s`
+                        }}
+                      />
+                    </div>
+                    <div className="language-level">{lang.level}%</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
           </div>
           <button className="back-button" onClick={handleBackClick}>Back</button>
         </div>
