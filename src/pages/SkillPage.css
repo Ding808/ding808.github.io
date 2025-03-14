@@ -222,78 +222,161 @@
 /* ========== 以下为语言进度条示例样式（修改后，带额外间距） ========== */
 
 /* 将语言进度条容器固定居中，并增加内边距 */
+/* 固定居中、内边距和子项间隔 */
+
 .language-list {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 800px;
-    margin: 0; /* 重置外边距 */
-    padding: 20px;  /* 增加内边距 */
-    display: flex;
-    flex-direction: column;
-    gap: 30px;  /* 增大子项之间的间距 */
-  }
-  
-  /* 单项：增加垂直内边距 */
-  .language-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  margin: 0; /* 重置外边距 */
+  padding: 20px;  /* 增加内边距 */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;  /* 增大子项之间的间距 */
+}
+
+/* 单项：增加垂直内边距 */
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+  padding: 10px 0;  /* 每个项目上下各加10px间距 */
+}
+
+/* 增大语言名称的宽度和字体 */
+.language-name {
+  min-width: 80px; /* 原来是60px */
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* 增大进度条外框尺寸 */
+.progress-bar {
+  flex: 1;
+  background: #333;
+  height: 20px;  /* 原来是10px */
+  border-radius: 10px; /* 圆角也相应调整 */
+  overflow: hidden;
+  position: relative;
+}
+
+/* 进度条本体保持不变 */
+.progress {
+  background-color: #ff9800;
+  height: 100%;
+  width: 0%;
+  transition: width 1s ease-in-out;
+}
+
+/* 动画类保持不变（宽度由JS inline-style控制） */
+.progress-animate {
+  /* 此处宽度由JS通过 inline-style 控制 */
+}
+
+/* 增大语言百分比的宽度和字体 */
+.language-level {
+  width: 60px; /* 原来是50px */
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+/* 淡入+上移动画关键帧保持不变 */
+@keyframes fadeInUp {
+  0% {
     opacity: 0;
-    animation: fadeInUp 0.5s forwards;
-    padding: 10px 0;  /* 每个项目上下各加10px间距 */
+    transform: translateY(15px);
   }
-  
-  /* 修改：增大语言名称的宽度和字体 */
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 针对屏幕宽度较小的响应式调整 */
+@media (max-width: 768px) {
+  .language-list {
+      width: 90%;
+      padding: 15px;
+      gap: 20px;
+  }
   .language-name {
-    min-width: 80px; /* 原来是60px */
-    text-align: right;
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 1.2rem;
+      min-width: 60px;
+      font-size: 1rem;
   }
-  
-  /* 修改：增大进度条外框尺寸 */
   .progress-bar {
-    flex: 1;
-    background: #333;
-    height: 20px;  /* 原来是10px */
-    border-radius: 10px; /* 圆角也相应调整 */
-    overflow: hidden;
-    position: relative;
+      height: 15px;
+      border-radius: 7.5px;
   }
-  
-  /* 进度条本体保持不变 */
-  .progress {
-    background-color: #ff9800;
-    height: 100%;
-    width: 0%;
-    transition: width 1s ease-in-out;
-  }
-  
-  /* 动画类保持不变 */
-  .progress-animate {
-    /* 此处宽度由JS通过 inline-style 控制 */
-  }
-  
-  /* 修改：增大语言百分比的宽度和字体 */
   .language-level {
-    width: 60px; /* 原来是50px */
-    text-align: left;
-    font-size: 1.2rem;
+      width: 50px;
+      font-size: 1rem;
   }
-  
-  /* 淡入 + 上移动画关键帧保持不变 */
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+@media (max-width: 480px) {
+  .language-list {
+      width: 95%;
+      padding: 10px;
+      gap: 15px;
   }
-  
+  .language-name {
+      min-width: 50px;
+      font-size: 0.9rem;
+  }
+  .progress-bar {
+      height: 12px;
+      border-radius: 6px;
+  }
+  .language-level {
+      width: 45px;
+      font-size: 0.9rem;
+  }
+}
+
+/* 针对屏幕高度较小的响应式调整 */
+@media (max-height: 600px) {
+  .language-list {
+      padding: 15px;
+      gap: 20px;
+  }
+  .language-item {
+      padding: 8px 0;
+  }
+  .language-name {
+      font-size: 1rem;
+  }
+  .progress-bar {
+      height: 15px;
+      border-radius: 7.5px;
+  }
+  .language-level {
+      font-size: 1rem;
+  }
+}
+
+@media (max-height: 480px) {
+  .language-list {
+      padding: 10px;
+      gap: 10px;
+  }
+  .language-item {
+      padding: 5px 0;
+  }
+  .language-name {
+      font-size: 0.9rem;
+  }
+  .progress-bar {
+      height: 12px;
+      border-radius: 6px;
+  }
+  .language-level {
+      font-size: 0.9rem;
+  }
+}
