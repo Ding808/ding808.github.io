@@ -10,6 +10,7 @@ function Contact() {
             src="/images/ProfileImage.jpg"
             className="logo"
             alt="My profile image"
+            
           />
         </a>
       </div>
