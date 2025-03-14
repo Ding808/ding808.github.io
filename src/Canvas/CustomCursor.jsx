@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import clickSoundSrc from '/Audio/click.wav';
 
 const CustomCursor = () => {
   // record mouse position
@@ -19,9 +18,6 @@ const CustomCursor = () => {
   }, []);
 
   //init the audio
-  useEffect(() => {
-    audioRef.current = new Audio(clickSoundSrc);
-  }, []);
 
   // use mouse effect 
   useEffect(() => {

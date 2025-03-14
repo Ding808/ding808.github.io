@@ -1,4 +1,3 @@
-import ParticleBackground from '../Canvas/ParticleBackground';
 import EllipseAnimation from '../Canvas/EllipseAnimation'; 
 
 function Contact() {

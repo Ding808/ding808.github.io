@@ -7,8 +7,6 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-import MusicPlayer from './Canvas/BackgroundMusic';
-import ParticleBackground from './Canvas/ParticleBackground'; 
 
 import Lanyard from './Canvas/Lanyard.jsx'
 
@@ -36,9 +34,8 @@ function App() {
 
   return (
     <>
-      {/* 粒子背景组件放在最外层 */}
+
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
-      <ParticleBackground />
       
       {/* 导航栏 */}
       <NavBar setPage={setPage} currentPage={page} />
@@ -46,8 +43,6 @@ function App() {
       {/* 渲染页面 */}
       {renderPage()}
 
-      {/* 背景音乐和自定义光标 */}
-      <MusicPlayer />
       <CustomCursor />
     </>
   );

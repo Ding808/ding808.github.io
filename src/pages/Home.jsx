@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import ParticleBackground from '../Canvas/ParticleBackground';
 import BlurText from "../Canvas/BlurText";
 
 const handleAnimationComplete = () => {
@@ -58,10 +57,7 @@ function Home() {
 
   return (
     <div style={{ position: 'relative', overflowX: 'hidden' }}>
-      {/* 背景粒子动画 */}
-      <ParticleBackground />
 
-      {/* 英雄区：欢迎信息 */}
       <section
         style={{
           ...sectionStyle,
