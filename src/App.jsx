@@ -9,7 +9,6 @@ import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import MusicPlayer from './Canvas/BackgroundMusic';
 import ParticleBackground from './Canvas/ParticleBackground'; 
-import SplashCursor from './Canvas/SplashCursor'
 
 import Lanyard from './Canvas/Lanyard.jsx'
 
@@ -38,7 +37,6 @@ function App() {
   return (
     <>
       {/* 粒子背景组件放在最外层 */}
-      <SplashCursor />
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
       <ParticleBackground />
       
