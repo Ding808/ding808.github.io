@@ -7,9 +7,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-
 import Lanyard from './Canvas/Lanyard.jsx'
-
 
 function App() {
   const [page, setPage] = useState('home');
@@ -34,7 +32,6 @@ function App() {
 
   return (
     <>
-
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
       
       {/* 导航栏 */}
