@@ -1,10 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
-import BlurText from "../Canvas/BlurText";
+import BlurText from '../Canvas/BlurText';
+import './Home.css'; // 引入我们分离的CSS
 
+// 动画完成后的回调
 const handleAnimationComplete = () => {
   console.log('Animation completed!');
 };
 
+// Intersection Observer 动画封装
 const AnimatedSection = ({ children }) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -19,9 +22,11 @@ const AnimatedSection = ({ children }) => {
       },
       { threshold: 0.2 }
     );
+
     if (ref.current) {
       observer.observe(ref.current);
     }
+
     return () => {
       if (ref.current) observer.unobserve(ref.current);
     };
@@ -29,13 +34,13 @@ const AnimatedSection = ({ children }) => {
 
   return (
     <div
-      ref={ref}
+      className="animated-section"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
         transition: 'opacity 1s ease-out, transform 1s ease-out',
       }}
-      className="animated-section"
+      ref={ref}
     >
       {children}
     </div>
@@ -43,116 +48,157 @@ const AnimatedSection = ({ children }) => {
 };
 
 function Home() {
-  // 通用样式
-  const sectionStyle = {
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '50px 0', // 每个页面之间的间隔
-    padding: '50px 20px',
-    borderRadius: '8px', // 可选：添加圆角效果
-  };
-
   return (
-    <div style={{ position: 'relative', overflowX: 'hidden' }}>
-
-      <section
-        style={{
-          ...sectionStyle,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)', // 英雄区背景稍微透明
-          margin: '0 0 50px 0', // 顶部区不需要上间隔
-        }}
-      >
-        <h1 style={{ color: 'white', textAlign: 'center' }}>
-          <BlurText
-            text="Hey there !!"
-            delay={150}
-            animateBy="words"
-            direction="top"
-            onAnimationComplete={handleAnimationComplete}
-            className="text-2xl mb-8"
-          />
-        </h1>
-        <div>
-          <a target="_blank" rel="noreferrer">
-            <img
-              src="/images/ProfileImage.jpg"
-              className="logo"
-              alt="My profile image"
+    <div className="home-container">
+      {/* Hero 区域 */}
+      <section className="hero-section">
+        {/* 左侧文字 */}
+        <div className="hero-left">
+          <h1>
+            <BlurText
+              text="Hey, I'm Ding"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="text-3xl"
             />
-          </a>
+          </h1>
+          <h2>
+            <BlurText
+              text="Software Developer"
+              delay={200}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="text-2xl"
+            />
+          </h2>
+          <p>
+            <BlurText
+                text=" Passionate about crafting seamless user experiences through clean, efficient code. Driven by innovation, guided by design."
+                delay={100}
+                animateBy="words"
+                direction="top"
+                onAnimationComplete={handleAnimationComplete}
+                className="text-3xl"
+              />
+          </p>
+          <div className="cta-buttons">
+            <button className="resume-button">View Resume</button>
+            <button className="work-button">View Work</button>
+          </div>
         </div>
-        <h1 style={{ color: 'white', textAlign: 'center' }}>
-          <BlurText
-            text="Welcome to my own Portfolio Website !!!"
-            delay={150}
-            animateBy="words"
-            direction="top"
-            onAnimationComplete={handleAnimationComplete}
-            className="text-2xl mb-8"
+
+        {/* 右侧形象照片 */}
+        <div className="hero-right">
+          <img
+            src="/images/ProfileImage.jpg"
+            alt="Profile"
           />
-        </h1>
+        </div>
       </section>
 
-      {/* About 页面简介 */}
-      <section
-        style={{
-          ...sectionStyle,
-          backgroundColor: 'rgba(34, 34, 34, 0.8)',
-        }}
-      >
+      {/* About 区域 */}
+      <section className="about-section">
         <AnimatedSection>
-          <h2 style={{ color: 'white', textAlign: 'center' }}>About</h2>
-          <p style={{ color: 'white', maxWidth: '600px', textAlign: 'center' }}>
-            some text
-          </p>
+          <h2>About Me</h2>
+          <div className="about-content">
+            <p>
+              With over 5 years of experience in software development, I specialize in building
+              robust, scalable, and user-friendly web applications. I’m always looking to improve
+              my skills and learn new technologies to keep up with the rapidly changing tech
+              industry.
+            </p>
+            <p>
+              <strong>Core Focus Areas:</strong> Full-stack Web Development · Mobile Development ·
+              Database Design · Cloud Services
+            </p>
+          </div>
         </AnimatedSection>
       </section>
 
-      {/* Projects 页面简介 */}
-      <section
-        style={{
-          ...sectionStyle,
-          backgroundColor: 'rgba(51, 51, 51, 0.8)',
-        }}
-      >
+      {/* Skills 区域 */}
+      <section className="skills-section">
         <AnimatedSection>
-          <h2 style={{ color: 'white', textAlign: 'center' }}>Projects</h2>
-          <p style={{ color: 'white', maxWidth: '600px', textAlign: 'center' }}>
-          some text
-          </p>
+          <h2>Technical Skills</h2>
+          <div className="skills-grid">
+            {/* 示例技能卡片 */}
+            <div className="skill-item">
+              <img src="/images/javascript-icon.png" alt="JavaScript" />
+              <p>JavaScript</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/react-icon.png" alt="React" />
+              <p>React</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/node-icon.png" alt="Node.js" />
+              <p>Node.js</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/python-icon.png" alt="Python" />
+              <p>Python</p>
+            </div>
+          </div>
         </AnimatedSection>
       </section>
 
-      {/* Skills 页面简介 */}
-      <section
-        style={{
-          ...sectionStyle,
-          backgroundColor: 'rgba(68, 68, 68, 0.8)',
-        }}
-      >
+      {/* Projects 区域 */}
+      <section className="projects-section">
         <AnimatedSection>
-          <h2 style={{ color: 'white', textAlign: 'center' }}>Skills</h2>
-          <p style={{ color: 'white', maxWidth: '600px', textAlign: 'center' }}>
-          some text
-          </p>
+          <h2>Featured Projects</h2>
+          <div className="projects-grid">
+            {/* 示例项目卡片 */}
+            <div className="project-card">
+              <img
+                src="/images/admin-dashboard.png"
+                alt="Admin Dashboard"
+              />
+              <h3>Admin Dashboard</h3>
+              <p>A comprehensive admin panel for managing data and user interactions.</p>
+            </div>
+
+            <div className="project-card">
+              <img
+                src="/images/ecommerce.png"
+                alt="E-commerce App"
+              />
+              <h3>E-commerce App</h3>
+              <p>A scalable, secure online store built with React and Node.js.</p>
+            </div>
+
+            <div className="project-card">
+              <img
+                src="/images/ai-chatbot.png"
+                alt="AI Chatbot"
+              />
+              <h3>AI Chatbot</h3>
+              <p>A conversational AI chatbot powered by NLP techniques.</p>
+            </div>
+
+            <div className="project-card">
+              <img
+                src="/images/realtime-chat.png"
+                alt="Real-time Chat"
+              />
+              <h3>Real-time Chat</h3>
+              <p>A socket-based real-time messaging app with custom channels.</p>
+            </div>
+          </div>
         </AnimatedSection>
       </section>
 
-      {/* Contact 页面简介 */}
-      <section
-        style={{
-          ...sectionStyle,
-          backgroundColor: 'rgba(85, 85, 85, 0.8)',
-        }}
-      >
+      {/* Contact 区域 */}
+      <section className="contact-section">
         <AnimatedSection>
-          <h2 style={{ color: 'white', textAlign: 'center' }}>Contact</h2>
-          <p style={{ color: 'white', maxWidth: '600px', textAlign: 'center' }}>
-          some text
+          <h2>Contact</h2>
+          <p className="contact-text">
+            Interested in working together or have a question? Let’s connect!
           </p>
+          <button className="contact-button">
+            Get in Touch
+          </button>
         </AnimatedSection>
       </section>
     </div>

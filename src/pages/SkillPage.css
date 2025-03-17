@@ -296,10 +296,6 @@
   background-color: #00bcd4; /* 青色 */
 }
 
-/* 动画类（宽度由JS inline-style控制） */
-.progress-animate {
-  /* 宽度由JS通过 inline-style 控制 */
-}
 
 /* 增大语言百分比的宽度和字体 */
 .language-level {

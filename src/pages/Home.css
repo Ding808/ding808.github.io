@@ -1,0 +1,237 @@
+ /* home 容器：再覆盖或添加一些样式 */
+  .home-container {
+    /* 让容器也至少撑满整个视窗 */
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;             
+    padding: 50px 20px;
+  }
+  
+  
+  .hero-left {
+    max-width: 600px;
+  }
+  
+  .hero-left h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-left h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #58A6FF;
+  }
+  
+  .hero-left p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  /* 社交链接区域 */
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* CTA 按钮 */
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .resume-button {
+    background-color: #58A6FF;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #0D1117;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .resume-button:hover {
+    background-color: #4698e0; /* 稍微变深 */
+    transform: scale(1.05);
+  }
+  
+  .work-button {
+    background-color: transparent;
+    border: 2px solid #58A6FF;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #58A6FF;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .work-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .hero-right img {
+    width: 350px;
+    border-radius: 8px;
+
+    box-shadow: 0 0 80px rgba(88, 166, 255, 0.5);
+  }
+  
+  /* About Section */
+  .about-section {
+    background-color: #161B22;
+    min-height: 100vh;
+    padding: 50px 20px;
+  
+    /* 让这个区块左右留白，从而能看见圆角 */
+    margin: 2rem; 
+    border-radius: 40px;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  .about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-content {
+    max-width: 800px;
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+  
+  /* Skills Section */
+  .skills-section {
+    background-color: #0D1117;
+    min-height: 70vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 2rem; 
+    border-radius: 40px;
+  }
+  
+  .skills-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .skills-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+  }
+  
+  .skill-item {
+    background-color: #161B22;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 120px;
+  }
+  
+  .skill-item img {
+    width: 40px;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    background-color: #161B22;
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2rem; 
+    border-radius: 40px;
+  }
+  
+  .projects-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .project-card {
+    background-color: #0D1117;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .project-card img {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.5);
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    background-color: #0D1117;
+    min-height: 50vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2rem; 
+    border-radius: 40px;
+  }
+  
+  .contact-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-text {
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-button {
+    background-color: #58A6FF;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #0D1117;
+    font-weight: bold;
+  }
+  

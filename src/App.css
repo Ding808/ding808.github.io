@@ -47,3 +47,13 @@ body {
   user-select: none;   
 }
 
+/* 全局重置：确保背景全屏 */
+html, body {
+  margin: 0;
+  padding: 0;
+  /* 设置全屏深色背景 */
+  background-color: #0D1117;
+  height: 100%;
+  color: #FFFFFF;
+  font-family: sans-serif;
+}
