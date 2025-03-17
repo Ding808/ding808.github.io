@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* 可选：初始时稍微向下偏移 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
  /* home 容器：再覆盖或添加一些样式 */
   .home-container {
     /* 让容器也至少撑满整个视窗 */
@@ -60,11 +71,16 @@
     color: #0D1117;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    
+    /* 淡入动画：延时 0.3s，持续 2s */
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.3s;
   }
   
   .resume-button:hover {
-    background-color: #4698e0; /* 稍微变深 */
-    transform: scale(1.05);
+    background-color: #256fb0;
+    transform: translateY(0) scale(1.05); /* 同时保留位移和放大效果 */
   }
   
   .work-button {
@@ -76,10 +92,15 @@
     color: #58A6FF;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    
+    /* 淡入动画：延时 0.5s，持续 2s */
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.5s;
   }
   
   .work-button:hover {
-    transform: scale(1.05);
+    transform: translateY(0) scale(1.05);
   }
   
   .hero-right img {
@@ -233,5 +254,10 @@
     cursor: pointer;
     color: #0D1117;
     font-weight: bold;
+  }
+  .contact-button:hover {
+    background-color: #4698e0;  /* 鼠标悬停时背景变深 */
+    transform: scale(1.05);     /* 悬停时轻微放大 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
   

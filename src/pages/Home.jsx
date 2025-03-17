@@ -196,7 +196,7 @@ function Home() {
           <p className="contact-text">
             Interested in working together or have a question? Let’s connect!
           </p>
-          <button className="contact-button">
+          <button className="contact-button" >
             Get in Touch
           </button>
         </AnimatedSection>
