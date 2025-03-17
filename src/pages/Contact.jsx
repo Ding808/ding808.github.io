@@ -3,17 +3,6 @@ import EllipseAnimation from '../Canvas/EllipseAnimation';
 function Contact() {
   return (
     <>
-      <div>
-        <a rel="noreferrer" href="/">
-          <img
-            src="/images/ProfileImage.jpg"
-            className="logo"
-            alt="My profile image"
-            
-          />
-        </a>
-      </div>
-
       <EllipseAnimation />
     </>
   );

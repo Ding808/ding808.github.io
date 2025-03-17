@@ -33,15 +33,9 @@ const EllipseAnimation = () => {
   // 鼠标 hover 状态
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
-  // 控制是否处于重力模式
-  const [gravityMode, setGravityMode] = useState(false);
-  // 重力模式下每个图标的物理数据：{ x, y, vx, vy }
-  const [physicsPositions, setPhysicsPositions] = useState(null);
-
-  // 持续更新全局旋转（仅在非重力模式下）
+  // 持续更新全局旋转
   const speed = 0.007;
   useEffect(() => {
-    if (gravityMode) return;
     let animationFrameId;
     const animate = () => {
       setGlobalRotation((prev) => prev + speed);
@@ -49,7 +43,7 @@ const EllipseAnimation = () => {
     };
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [gravityMode]);
+  }, []);
 
   // 保存各图标动画帧 id，便于取消动画过渡
   const transitionAnimationRefs = useRef({});
@@ -66,11 +60,13 @@ const EllipseAnimation = () => {
       const progress = Math.min((now - startTime) / duration, 1);
       const targetAngle = globalRotationRef.current + angleOffsets[i];
       const newAngle = frozenAngle * (1 - progress) + targetAngle * progress;
+
       setManualAngles((prev) => {
         const newManual = [...prev];
         newManual[i] = newAngle;
         return newManual;
       });
+
       if (progress < 1) {
         transitionAnimationRefs.current[i] = requestAnimationFrame(step);
       } else {
@@ -93,168 +89,67 @@ const EllipseAnimation = () => {
     radiusY = 150,
     theta = -Math.PI / 4;
 
-  /* ------------------ 物理模拟 ------------------ */
-  useEffect(() => {
-    if (!gravityMode) return;
-    let lastTime = performance.now();
-    const gravityAcceleration = 1000; // px/s²
-    const restitution = 0.7; // 反弹系数
-    const radius = 30; // 图标半径（图标尺寸 60x60）
-    const containerWidth = window.innerWidth;
-    const containerHeight = window.innerHeight;
-
-    const simulationStep = () => {
-      const now = performance.now();
-      const dt = (now - lastTime) / 1000; // 单位：秒
-      lastTime = now;
-      setPhysicsPositions((prevPositions) => {
-        if (!prevPositions) return prevPositions;
-        // 更新位置和速度
-        const newPositions = prevPositions.map((pos) => {
-          let newVY = pos.vy + gravityAcceleration * dt;
-          let newVX = pos.vx; // 无水平加速度
-          let newX = pos.x + newVX * dt;
-          let newY = pos.y + newVY * dt;
-          // 碰撞检测：左右边界
-          if (newX - radius < 0) {
-            newX = radius;
-            newVX = -newVX * restitution;
-          }
-          if (newX + radius > containerWidth) {
-            newX = containerWidth - radius;
-            newVX = -newVX * restitution;
-          }
-          // 顶部和底部碰撞
-          if (newY - radius < 0) {
-            newY = radius;
-            newVY = -newVY * restitution;
-          }
-          if (newY + radius > containerHeight) {
-            newY = containerHeight - radius;
-            newVY = -newVY * restitution;
-            if (Math.abs(newVY) < 10) newVY = 0;
-          }
-          return { ...pos, x: newX, y: newY, vx: newVX, vy: newVY };
-        });
-        // 两两图标之间的碰撞检测（简单的圆碰撞检测）
-        for (let i = 0; i < newPositions.length; i++) {
-          for (let j = i + 1; j < newPositions.length; j++) {
-            const dx = newPositions[j].x - newPositions[i].x;
-            const dy = newPositions[j].y - newPositions[i].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 2 * radius && dist > 0) {
-              const overlap = 2 * radius - dist;
-              const nx = dx / dist;
-              const ny = dy / dist;
-              // 将两图标各自推开一半
-              newPositions[i].x -= nx * overlap / 2;
-              newPositions[i].y -= ny * overlap / 2;
-              newPositions[j].x += nx * overlap / 2;
-              newPositions[j].y += ny * overlap / 2;
-              // 简单处理：交换法向分量
-              const vi_n = newPositions[i].vx * nx + newPositions[i].vy * ny;
-              const vj_n = newPositions[j].vx * nx + newPositions[j].vy * ny;
-              newPositions[i].vx += (vj_n - vi_n) * nx * restitution;
-              newPositions[i].vy += (vj_n - vi_n) * ny * restitution;
-              newPositions[j].vx += (vi_n - vj_n) * nx * restitution;
-              newPositions[j].vy += (vi_n - vj_n) * ny * restitution;
-            }
-          }
-        }
-        return newPositions;
-      });
-      requestAnimationFrame(simulationStep);
-    };
-    const animId = requestAnimationFrame(simulationStep);
-    return () => cancelAnimationFrame(animId);
-  }, [gravityMode]);
-
-  /* ------------------ 按钮事件处理 ------------------ */
-  // 点击 Gravity 按钮后，初始化每个图标的物理数据，并切换到重力模式
-  const handleGravity = () => {
-    if (!gravityMode) {
-      // 原椭圆动画的容器在页面中的左上角位置
-      const containerLeft = window.innerWidth / 2 - 300;
-      const containerTop = window.innerHeight / 2 - 300;
-      const initialPhysics = items.map((item, i) => {
-        const angle = manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
-        const x0 = radiusX * Math.cos(angle);
-        const y0 = radiusY * Math.sin(angle);
-        const rotatedX = x0 * Math.cos(theta) - y0 * Math.sin(theta);
-        const rotatedY = x0 * Math.sin(theta) + y0 * Math.cos(theta);
-        // 转换为全屏坐标：原本 x 坐标为 centerX+rotatedX，相对于容器左上角（containerLeft）
-        const x = containerLeft + (centerX + rotatedX);
-        const y = containerTop + (centerY + rotatedY);
-        return { x, y, vx: 0, vy: 0 };
-      });
-      setPhysicsPositions(initialPhysics);
-      setGravityMode(true);
-    }
+  // 容器样式
+  const containerStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    width: '600px',
+    height: '600px',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 9999,
+    pointerEvents: 'none',
   };
 
-  // 点击 Reset 按钮，重置为椭圆旋转状态
-  const handleReset = () => {
-    setGravityMode(false);
-    setPhysicsPositions(null);
-    setGlobalRotation(0);
-    setManualAngles(Array(items.length).fill(null));
-    setIsHovered(Array(items.length).fill(false));
-  };
-
-  // 根据模式设置容器样式
-  const containerStyle = gravityMode
-    ? {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 9999,
-        pointerEvents: 'none',
-      }
-    : {
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        width: '600px',
-        height: '600px',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 9999,
-        pointerEvents: 'none',
-      };
+  // 新增：头像悬停状态
+  const [avatarHovered, setAvatarHovered] = useState(false);
 
   return (
     <div>
-      {/* 控制按钮 */}
-      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 10000 }}>
-        <button onClick={handleGravity} disabled={gravityMode} style={{ marginRight: '10px' }}>
-          Gravity
-        </button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
+      {/* 旋转容器 */}
       <div style={containerStyle}>
+        {/* 在圆心放置个人头像，点击回主页，悬停动画 */}
+        <img
+          src="/images/ProfileImage.jpg"
+          alt="My profile image"
+          // 点击头像回到主页
+          onClick={() => (window.location.href = '/')}
+          // 悬停动画
+          onMouseEnter={() => setAvatarHovered(true)}
+          onMouseLeave={() => setAvatarHovered(false)}
+          style={{
+            position: 'absolute',
+            left: 300,
+            top: 300,
+            // 悬停时放大，光晕加强
+            transform: `translate(-50%, -50%) scale(${avatarHovered ? 1.2 : 1})`,
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            cursor: 'pointer',
+            width: 100,
+            height: 100,
+            borderRadius: '50%',
+            pointerEvents: 'auto',
+            boxShadow: avatarHovered
+              ? '0 0 15px 5px rgba(255, 255, 255, 0.8)'
+              : '0 0 8px rgba(255, 255, 255, 0.8)',
+          }}
+        />
+
+        {/* 循环渲染图标 */}
         {items.map((item, i) => {
-          let x, y;
-          if (!gravityMode) {
-            const angle = manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
-            const x0 = radiusX * Math.cos(angle);
-            const y0 = radiusY * Math.sin(angle);
-            const rotatedX = x0 * Math.cos(theta) - y0 * Math.sin(theta);
-            const rotatedY = x0 * Math.sin(theta) + y0 * Math.cos(theta);
-            x = centerX + rotatedX;
-            y = centerY + rotatedY;
-          } else {
-            if (physicsPositions && physicsPositions[i]) {
-              x = physicsPositions[i].x;
-              y = physicsPositions[i].y;
-            } else {
-              x = 0;
-              y = 0;
-            }
-          }
-          // 只有在非重力模式下才使用悬停特效
-          const scaleValue = !gravityMode && isHovered[i] ? 1.3 : 1;
-          const boxShadow = !gravityMode && isHovered[i] ? '0 0 10px 4px #ADD8E6' : 'none';
+          // 计算图标在椭圆上的位置
+          const angle = manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
+          const x0 = radiusX * Math.cos(angle);
+          const y0 = radiusY * Math.sin(angle);
+          const rotatedX = x0 * Math.cos(theta) - y0 * Math.sin(theta);
+          const rotatedY = x0 * Math.sin(theta) + y0 * Math.cos(theta);
+          const x = centerX + rotatedX;
+          const y = centerY + rotatedY;
+
+          // 悬停放大效果
+          const scaleValue = isHovered[i] ? 1.3 : 1;
+          const boxShadow = isHovered[i] ? '0 0 10px 4px #ADD8E6' : 'none';
+
           return (
             <a
               key={i}
@@ -268,43 +163,35 @@ const EllipseAnimation = () => {
                 display: 'block',
                 pointerEvents: 'auto',
               }}
-              onMouseEnter={
-                !gravityMode
-                  ? () => {
-                      // 若存在正在进行的动画过渡，则取消它
-                      if (transitionAnimationRefs.current[i]) {
-                        cancelAnimationFrame(transitionAnimationRefs.current[i]);
-                        transitionAnimationRefs.current[i] = null;
-                      }
-                      setIsHovered((prev) => {
-                        const newHovered = [...prev];
-                        newHovered[i] = true;
-                        return newHovered;
-                      });
-                      // 悬停时冻结当前位置
-                      setManualAngles((prev) => {
-                        const newManual = [...prev];
-                        newManual[i] = globalRotation + angleOffsets[i];
-                        return newManual;
-                      });
-                    }
-                  : undefined
-              }
-              onMouseLeave={
-                !gravityMode
-                  ? () => {
-                      setIsHovered((prev) => {
-                        const newHovered = [...prev];
-                        newHovered[i] = false;
-                        return newHovered;
-                      });
-                      const frozenAngle =
-                        manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
-                      const duration = 1000; // 动画过渡时间（毫秒）
-                      animateTransition(i, frozenAngle, duration);
-                    }
-                  : undefined
-              }
+              onMouseEnter={() => {
+                // 若存在正在进行的动画过渡，则取消它
+                if (transitionAnimationRefs.current[i]) {
+                  cancelAnimationFrame(transitionAnimationRefs.current[i]);
+                  transitionAnimationRefs.current[i] = null;
+                }
+                setIsHovered((prev) => {
+                  const newHovered = [...prev];
+                  newHovered[i] = true;
+                  return newHovered;
+                });
+                // 悬停时冻结当前位置
+                setManualAngles((prev) => {
+                  const newManual = [...prev];
+                  newManual[i] = globalRotation + angleOffsets[i];
+                  return newManual;
+                });
+              }}
+              onMouseLeave={() => {
+                setIsHovered((prev) => {
+                  const newHovered = [...prev];
+                  newHovered[i] = false;
+                  return newHovered;
+                });
+                const frozenAngle =
+                  manualAngles[i] !== null ? manualAngles[i] : globalRotation + angleOffsets[i];
+                const duration = 1000; // 动画过渡时间（毫秒）
+                animateTransition(i, frozenAngle, duration);
+              }}
             >
               <img
                 src={item.src}
