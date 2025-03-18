@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import BlurText from '../Canvas/BlurText';
-import './Home.css'; // 引入我们分离的CSS
+import './Home.css'; 
 
 // 动画完成后的回调
 const handleAnimationComplete = () => {
@@ -47,7 +47,7 @@ const AnimatedSection = ({ children }) => {
   );
 };
 
-function Home() {
+function Home({setPage}) {
   return (
     <div className="home-container">
       {/* Hero 区域 */}
@@ -84,10 +84,12 @@ function Home() {
                 className="text-3xl"
               />
           </p>
-          <div className="cta-buttons">
-            <button className="resume-button">View Resume</button>
-            <button className="work-button">View Work</button>
-          </div>
+          <button
+              className="resume-button"
+              onClick={() => setPage('resumepage')}
+            >
+              View Resume
+            </button>
         </div>
 
         {/* 右侧形象照片 */}

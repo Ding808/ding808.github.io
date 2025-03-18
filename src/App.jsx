@@ -7,7 +7,8 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-import Lanyard from './Canvas/Lanyard.jsx'
+import Lanyard from './Canvas/Lanyard.jsx';
+import ResumePage from './pages/ResumePage';
 
 function App() {
   const [page, setPage] = useState('home');
@@ -16,7 +17,9 @@ function App() {
   const renderPage = () => {
     switch (page) {
       case 'home':
-        return <Home />;
+        return <Home setPage={setPage} />;
+      case 'resumepage':
+        return <ResumePage setPage={setPage} />;
       case 'skills':
         return <Skills />;
       case 'projects':
@@ -29,6 +32,7 @@ function App() {
         return <Home />;
     }
   };
+
 
   return (
     <>

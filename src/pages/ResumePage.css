@@ -1,0 +1,62 @@
+/* 外层容器：增加顶部留白，允许滚动 */
+.resume-container {
+    min-height: 100vh;
+    background-color: #0D1117;
+    padding: 3rem 2rem 2rem; /* 顶部空间可根据需求调大/调小 */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* PDF 容器（带阴影） */
+  .resume-content {
+    background-color: #161B22;
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.4);
+    border-radius: 20px;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  /* PDF iframe 样式 */
+  .resume-iframe {
+    display: block;
+    width: 100%;
+    height: 1200px; /* 根据需要可调整 */
+    border: none;
+    border-radius: 10px;
+  }
+  
+  /* 按钮容器：与 PDF 同宽，居中显示，按钮之间留些空隙 */
+  .button-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    gap: 6rem;               /* 按钮之间的间距，可自行调整 */
+  }
+  
+  /* 两个按钮样式 */
+  .return-button,
+  .download-button {
+    background-color: #58A6FF;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #0D1117;
+    font-weight: bold;
+    text-decoration: none; /* a 标签默认有下划线，这里去掉 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* 悬停效果 */
+  .return-button:hover,
+  .download-button:hover {
+    background-color: #4698e0;
+    transform: scale(1.05);
+  }
+  

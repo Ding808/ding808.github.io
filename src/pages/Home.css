@@ -55,13 +55,6 @@
     margin-bottom: 1rem;
   }
   
-  /* CTA 按钮 */
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
   .resume-button {
     background-color: #58A6FF;
     border: none;
@@ -81,26 +74,6 @@
   .resume-button:hover {
     background-color: #256fb0;
     transform: translateY(0) scale(1.05); /* 同时保留位移和放大效果 */
-  }
-  
-  .work-button {
-    background-color: transparent;
-    border: 2px solid #58A6FF;
-    padding: 0.8rem 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #58A6FF;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    
-    /* 淡入动画：延时 0.5s，持续 2s */
-    opacity: 0;
-    animation: fadeIn 2s ease forwards;
-    animation-delay: 0.5s;
-  }
-  
-  .work-button:hover {
-    transform: translateY(0) scale(1.05);
   }
   
   .hero-right img {
