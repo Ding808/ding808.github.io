@@ -1,5 +1,16 @@
-/* 外层容器：增加顶部留白，允许滚动 */
-.resume-container {
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 外层容器：增加顶部留白，允许滚动 */
+  .resume-container {
     min-height: 100vh;
     background-color: #0D1117;
     padding: 3rem 2rem 2rem; /* 顶部空间可根据需求调大/调小 */
@@ -7,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: fadeIn 1s ease-out; /* 添加淡入动画 */
   }
   
   /* PDF 容器（带阴影） */
@@ -36,7 +48,7 @@
     margin: 2rem auto 0;
     display: flex;
     justify-content: center; /* 水平居中 */
-    gap: 6rem;               /* 按钮之间的间距，可自行调整 */
+    gap: 2rem;               /* 调整按钮之间的间距，这里由6rem改为2rem，使其更靠近 */
   }
   
   /* 两个按钮样式 */
