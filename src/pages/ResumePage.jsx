@@ -1,9 +1,10 @@
 import React from 'react';
 import './ResumePage.css';
+import '../../public/images/Yueyang Ding-9.pdf';
 
 function ResumePage({ setPage }) {
   // 请根据需要修改 pdfUrl 为你实际的 PDF 文件地址
-  const pdfUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+  const pdfUrl = "../../public/images/Yueyang Ding-9.pdf";
 
   return (
     <div className="resume-container">
