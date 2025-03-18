@@ -1,14 +1,13 @@
 import React from 'react';
 import './ResumePage.css';
-import '../../public/images/Yueyang Ding-9.pdf';
 
 function ResumePage({ setPage }) {
-  // 请根据需要修改 pdfUrl 为你实际的 PDF 文件地址
-  const pdfUrl = "../../public/images/Yueyang Ding-9.pdf";
+  // 指向 public/images/Yueyang-Ding-9.pdf
+  // （在 public 下的任何文件都可以通过 "/..." 访问）
+  const pdfUrl = '/images/Yueyang-Ding-9.pdf';
 
   return (
     <div className="resume-container">
-      {/* PDF 容器 */}
       <div className="resume-content">
         <iframe
           src={pdfUrl}
@@ -17,7 +16,6 @@ function ResumePage({ setPage }) {
         />
       </div>
 
-      {/* 按钮容器：位于 PDF 下方，左右分开 */}
       <div className="button-container">
         <button
           className="return-button"
