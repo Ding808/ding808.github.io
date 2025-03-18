@@ -2,8 +2,6 @@ import React from 'react';
 import './ResumePage.css';
 
 function ResumePage({ setPage }) {
-  // 指向 public/images/Yueyang-Ding-9.pdf
-  // （在 public 下的任何文件都可以通过 "/..." 访问）
   const pdfUrl = '/images/Yueyang-Ding-9.pdf';
 
   return (

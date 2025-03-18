@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import BlurText from '../Canvas/BlurText';
 import './Home.css'; 
+import SplitText from "../Components/SplitText";
 
 // 动画完成后的回调
 const handleAnimationComplete = () => {
@@ -102,23 +103,71 @@ function Home({setPage}) {
       </section>
 
       {/* About 区域 */}
-      <section className="about-section">
+      <section className="about-section py-8 px-4 bg-gray-900">
         <AnimatedSection>
-          <h2>About Me</h2>
-          <div className="about-content">
-            <p>
-              With over 5 years of experience in software development, I specialize in building
-              robust, scalable, and user-friendly web applications. I’m always looking to improve
-              my skills and learn new technologies to keep up with the rapidly changing tech
-              industry.
+          {/* 标题部分 */}
+          <h2 className="text-3xl font-bold text-center text-white mb-6">About Me</h2>
+
+          {/* 内容主体，限制最大宽度，居中排版 */}
+          <div className="about-content max-w-4xl mx-auto">
+            {/* 简介段落 */}
+            <p className="mb-6 text-lg leading-relaxed text-center text-gray-300">
+              <SplitText
+                text="With a strong foundation in computer science, I am passionate about software development, blockchain technology, and mobile computing. I specialize in building scalable and secure applications, turning ideas into reality through innovative solutions. My experience spans full-stack development, mobile app development, and web application development, with a strong focus on efficiency, performance, and user experience."
+                className="text-xl font-medium"
+                delay={10}
+                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-50px"
+                onLetterAnimationComplete={handleAnimationComplete}
+              />
             </p>
-            <p>
-              <strong>Core Focus Areas:</strong> Full-stack Web Development · Mobile Development ·
-              Database Design · Cloud Services
-            </p>
+
+            {/* 技能区域，2×2 网格布局，并加大卡片与卡片之间的间距 */}
+            <div className="skills-grid grid grid-cols-2 gap-6 mt-6">
+              <AnimatedSection
+                animationFrom={{ opacity: 0 }}
+                animationTo={{ opacity: 1 }}
+                delay={10}
+              >
+                <div className="skill-item p-5 bg-gray-800 rounded shadow text-center transition-transform duration-300 transform hover:scale-105">
+                  <span className="text-3xl">💻</span>
+                  <p className="mt-3 text-lg font-semibold text-gray-100">Full Stack Development</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection
+                animationFrom={{ opacity: 0 }}
+                animationTo={{ opacity: 1 }}
+                delay={20}
+              >
+                <div className="skill-item p-5 bg-gray-800 rounded shadow text-center transition-transform duration-300 transform hover:scale-105">
+                  <span className="text-3xl">📱</span>
+                  <p className="mt-3 text-lg font-semibold text-gray-100">Mobile App Development</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection
+                animationFrom={{ opacity: 0 }}
+                animationTo={{ opacity: 1 }}
+                delay={30}
+              >
+                <div className="skill-item p-5 bg-gray-800 rounded shadow text-center transition-transform duration-300 transform hover:scale-105">
+                  <span className="text-3xl">🛜</span>
+                  <p className="mt-3 text-lg font-semibold text-gray-100">Web App Development</p>
+                </div>
+              </AnimatedSection>
+            </div>
           </div>
         </AnimatedSection>
       </section>
+
+
+
+
+
 
       {/* Skills 区域 */}
       <section className="skills-section">

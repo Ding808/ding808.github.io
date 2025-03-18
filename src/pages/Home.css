@@ -86,7 +86,7 @@
   /* About Section */
   .about-section {
     background-color: #161B22;
-    min-height: 100vh;
+    min-height: 50vh;
     padding: 50px 20px;
   
     /* 让这个区块左右留白，从而能看见圆角 */
