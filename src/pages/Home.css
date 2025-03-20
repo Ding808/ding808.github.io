@@ -115,7 +115,7 @@
   /* Skills Section */
   .skills-section {
     background-color: #0D1117;
-    min-height: 70vh;
+    min-height: 50vh;
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
@@ -129,7 +129,7 @@
   
   .skills-section h2 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
   }
   
   .skills-grid {
