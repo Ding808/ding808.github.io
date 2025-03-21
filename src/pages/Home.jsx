@@ -191,6 +191,14 @@ function Home({setPage}) {
               <img src="/images/python-icon.png" alt="Python" />
               <p>Python</p>
             </div>
+            <div className="skill-item">
+              <img src="/images/python-icon.png" alt="Python" />
+              <p>Python</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/python-icon.png" alt="Python" />
+              <p>Python</p>
+            </div>
           </div>
         </AnimatedSection>
       </section>
