@@ -2,7 +2,7 @@ import React from 'react';
 import './ResumePage.css';
 
 function ResumePage({ setPage }) {
-  const pdfUrl = '/images/Yueyang-Ding-9.pdf';
+  const pdfUrl = '/images/Yueyang-Ding-10.pdf';
 
   return (
     <div className="resume-container">
