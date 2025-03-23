@@ -42,17 +42,21 @@
 
 /* 网格卡片布局：2行 x 3列 */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 0 auto;
+  justify-items: center;
 }
 
 /* 卡片基本样式 */
 .skill-card {
-    position: relative;
-    cursor: pointer;
-    height: 250px;
-    transition: opacity 0.5s ease;
+  width: 100%; /* 让 skill-card 占满 grid 项 */
+  max-width: 300px; /* 限制最大宽度保持一致 */
+  height: 250px;
+  position: relative;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
 }
 
 /* 卡片内部容器 */
