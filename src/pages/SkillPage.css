@@ -1,11 +1,11 @@
 /* 整体容器 */
 .skills-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 50px 0;
-    color: rgb(76, 76, 76);
-    position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+  color: rgb(198, 186, 186);
+  position: relative;
 }
 
 /* 标题区域 */
@@ -200,15 +200,16 @@
 
 /* 返回按钮 */
 .back-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #fff;
-    color: #111;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #111;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1100; /* 确保按钮显示在其他内容之上 */
 }
 
 /* 响应式布局 */

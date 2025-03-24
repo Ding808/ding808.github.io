@@ -212,37 +212,28 @@ function Home({setPage}) {
             <div className="project-card">
               <img
                 src="/images/admin-dashboard.png"
-                alt="Admin Dashboard"
+                alt="Finance App"
               />
-              <h3>Admin Dashboard</h3>
-              <p>A comprehensive admin panel for managing data and user interactions.</p>
+              <h3>Finance App</h3>
+              <p>This is my finance app project</p>
             </div>
 
             <div className="project-card">
               <img
                 src="/images/ecommerce.png"
-                alt="E-commerce App"
+                alt="College Portal"
               />
-              <h3>E-commerce App</h3>
-              <p>A scalable, secure online store built with React and Node.js.</p>
+              <h3>College Portal</h3>
+              <p>This is my college portal project</p>
             </div>
 
             <div className="project-card">
               <img
                 src="/images/ai-chatbot.png"
-                alt="AI Chatbot"
+                alt="My Portfolio Website"
               />
-              <h3>AI Chatbot</h3>
-              <p>A conversational AI chatbot powered by NLP techniques.</p>
-            </div>
-
-            <div className="project-card">
-              <img
-                src="/images/realtime-chat.png"
-                alt="Real-time Chat"
-              />
-              <h3>Real-time Chat</h3>
-              <p>A socket-based real-time messaging app with custom channels.</p>
+              <h3>My Portfolio Website</h3>
+              <p>The is my own portfolio website project</p>
             </div>
           </div>
         </AnimatedSection>
@@ -257,8 +248,7 @@ function Home({setPage}) {
           </p>
           <button
           className="contact-button"
-          onClick={() => setPage("contact")}
-        >
+          onClick={() => setPage("contact")}>
           Get in Touch
         </button>
 
