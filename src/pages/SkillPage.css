@@ -132,7 +132,6 @@
 /* 被点击卡片内标题字体变大 (与详情页标题相同) */
 .card-inner h3 {
     white-space: nowrap;   /* 不自动换行 */
-    overflow: hidden;      /* 如果宽度不够，则隐藏超出部分 */
     text-overflow: ellipsis; 
 }
 .animate-to-title .card-inner h3 {
@@ -228,29 +227,26 @@
 
 /* 让语言列表在详情内容的正常文档流中呈现 */
 .language-list {
-  /* 自适应父容器宽度 */
-  width: 100%;          
+  /* 保持你原先的设置 */
+  width: 100%;
   max-width: 800px;
-  margin: 0 auto;        /* 水平居中 */
-  padding: 20px;         /* 内边距 */
-  
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px; /* 子项之间的间距 */
-  
-  /* 保证所有语言垂直显示 */
+  gap: 30px;
   max-height: 100vh;
   overflow-y: auto;
 }
 
-/* 单项：增加垂直内边距 */
+/* 单项 */
 .language-item {
   display: flex;
   align-items: center;
   gap: 10px;
   opacity: 0;
   animation: fadeInUp 0.5s forwards;
-  padding: 10px 0;  /* 每个项目上下各加10px间距 */
+  padding: 10px 0;
 }
 
 /* 语言名称固定宽度，并居中显示 */
@@ -281,24 +277,72 @@
 }
 
 /* 根据语言项目索引自动分配不同颜色（共 6 种颜色，循环使用） */
+/* 保留你原本的 nth-child 颜色 */
+/* 定义闪光/脉冲发光动画 */
+/* 定义渐变背景动画 */
+/* 定义渐变背景动画 */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 定义闪光/脉冲发光动画，并加上淡蓝色的内阴影 */
+@keyframes glow {
+  0%, 100% {
+    filter: brightness(1.5);
+    box-shadow: inset 0 2px 5px rgba(173, 216, 230, 0.4), 0 0 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    filter: brightness(1.5);
+    box-shadow: inset 0 2px 5px rgba(173, 216, 230, 0.4), 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* 根据 nth-child 为不同的进度条设置不同的渐变颜色，
+   同时添加渐变动画与闪光动画 */
 .language-item:nth-child(6n+1) .progress {
-  background-color: #ff9800; /* 橙色 */
+  background: linear-gradient(90deg, #ff9800, #ffcc80, #ff9800);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 .language-item:nth-child(6n+2) .progress {
-  background-color: #4caf50; /* 绿色 */
+  background: linear-gradient(90deg, #4caf50, #81c784, #4caf50);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 .language-item:nth-child(6n+3) .progress {
-  background-color: #2196f3; /* 蓝色 */
+  background: linear-gradient(90deg, #2196f3, #64b5f6, #2196f3);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 .language-item:nth-child(6n+4) .progress {
-  background-color: #f44336; /* 红色 */
+  background: linear-gradient(90deg, #f44336, #e57373, #f44336);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 .language-item:nth-child(6n+5) .progress {
-  background-color: #9c27b0; /* 紫色 */
+  background: linear-gradient(90deg, #9c27b0, #ba68c8, #9c27b0);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 .language-item:nth-child(6n+6) .progress {
-  background-color: #00bcd4; /* 青色 */
+  background: linear-gradient(90deg, #00bcd4, #4dd0e1, #00bcd4);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite, glow 2s ease-in-out infinite;
 }
+
 
 
 /* 增大语言百分比的宽度和字体 */
@@ -381,23 +425,21 @@
       font-size: 1rem;
   }
 }
-
-@media (max-height: 480px) {
+@media (max-height: 900px) {
   .language-list {
-      padding: 10px;
-      gap: 10px;
+    gap: 20px;        /* 原本30px，减小一些 */
+    padding: 15px;    /* 原本20px */
   }
   .language-item {
-      padding: 5px 0;
+    padding: 8px 0;   /* 原本10px 0 */
   }
   .language-name {
-      font-size: 0.9rem;
+    font-size: 0.95rem; /* 稍微减小 */
   }
   .progress-bar {
-      height: 12px;
-      border-radius: 6px;
+    height: 14px;        /* 稍微减小 */
   }
   .language-level {
-      font-size: 0.9rem;
+    font-size: 1.1rem;    /* 或保持不变，看你需求 */
   }
 }

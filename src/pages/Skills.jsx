@@ -10,7 +10,7 @@ const Skills = () => {
 
   // 示例数据
   const skillsData = [
-    { id: 1, title: 'Programming Language', description: 'The description of my programming language' },
+    { id: 1, title: 'Programming', description: 'The description of my programming language' },
     { id: 2, title: 'Language', description: 'The description of my language skills' },
     { id: 3, title: 'Skill 3', description: 'Description for skill 3' },
     { id: 4, title: 'Skill 4', description: 'Description for skill 4' },
