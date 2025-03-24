@@ -176,28 +176,28 @@ function Home({setPage}) {
           <div className="skills-grid">
             {/* 示例技能卡片 */}
             <div className="skill-item">
-              <img src="/images/javascript-icon.png" alt="JavaScript" />
+              <img src="/images/java-script.png" alt="JavaScript" />
               <p>JavaScript</p>
             </div>
             <div className="skill-item">
-              <img src="/images/react-icon.png" alt="React" />
+              <img src="/images/c-sharp.png" alt="CSharp" />
+              <p>C#</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/python.png" alt="Python" />
+              <p>Python</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/swift.png" alt="Swift" />
+              <p>Swift</p>
+            </div>
+            <div className="skill-item">
+              <img src="/images/react.png" alt="React" />
               <p>React</p>
             </div>
             <div className="skill-item">
-              <img src="/images/node-icon.png" alt="Node.js" />
-              <p>Node.js</p>
-            </div>
-            <div className="skill-item">
-              <img src="/images/python-icon.png" alt="Python" />
-              <p>Python</p>
-            </div>
-            <div className="skill-item">
-              <img src="/images/python-icon.png" alt="Python" />
-              <p>Python</p>
-            </div>
-            <div className="skill-item">
-              <img src="/images/python-icon.png" alt="Python" />
-              <p>Python</p>
+              <img src="/images/java.png" alt="Java" />
+              <p>Java</p>
             </div>
           </div>
         </AnimatedSection>
@@ -255,9 +255,13 @@ function Home({setPage}) {
           <p className="contact-text">
             Interested in working together or have a question? Let’s connect!
           </p>
-          <button className="contact-button" >
-            Get in Touch
-          </button>
+          <button
+          className="contact-button"
+          onClick={() => setPage("contact")}
+        >
+          Get in Touch
+        </button>
+
         </AnimatedSection>
       </section>
     </div>

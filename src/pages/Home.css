@@ -146,7 +146,34 @@
     border-radius: 5px;
     text-align: center;
     min-width: 120px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加平滑过渡 */
   }
+  .skill-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(173,216,230,0.5); /* hover时添加蓝色阴影 */
+  }
+  
+  .skill-item::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(173,216,230,0.5), transparent);
+    border-radius: 50%;
+    filter: blur(10px);
+    z-index: -1;
+    transition: bottom 0.3s ease, filter 0.3s ease; /* 伪元素也添加动画过渡 */
+  }
+  
+  .skill-item:hover::after {
+    bottom: -20px; /* 调整阴影位置以配合放大效果 */
+    filter: blur(15px);
+  }
+  
   
   .skill-item img {
     width: 40px;
