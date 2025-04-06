@@ -9,12 +9,18 @@
   }
 }
 
+body {
+  background-color: #0D1117;
+}
+
  /* home 容器：再覆盖或添加一些样式 */
-  .home-container {
-    /* 让容器也至少撑满整个视窗 */
-    min-height: 100vh;
-    width: 100%;
-  }
+ .home-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0D1117;
+  padding: 2rem 0; /* 新增内边距，防止 margin 脱离容器 */
+}
+
   
   /* Hero Section */
   .hero-section {

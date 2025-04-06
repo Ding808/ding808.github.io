@@ -164,11 +164,6 @@ function Home({setPage}) {
         </AnimatedSection>
       </section>
 
-
-
-
-
-
       {/* Skills 区域 */}
       <section className="skills-section">
         <AnimatedSection>
