@@ -54,6 +54,6 @@ html, body {
   /* 设置全屏深色背景 */
   background-color: #0D1117;
   height: 100%;
-  color: #FFFFFF;
+  color: white;
   font-family: sans-serif;
 }
