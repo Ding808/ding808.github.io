@@ -30,6 +30,7 @@ body {
   min-height: 100vh;
   width: 100%;      /* 占满全屏宽度 */
   background-color: transparent;
+  background-color: #0D1117; /* 深色背景 */
 }
 
 h1 {

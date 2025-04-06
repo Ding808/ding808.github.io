@@ -38,15 +38,15 @@ function App() {
     <>
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
       
-      {/* 导航栏 */}
       <NavBar setPage={setPage} currentPage={page} />
       
-      {/* 渲染页面 */}
-      {renderPage()}
-
+      <div className="page-wrapper">
+        {renderPage()}
+      </div>
+  
       <CustomCursor />
     </>
   );
-}
+}  
 
 export default App;

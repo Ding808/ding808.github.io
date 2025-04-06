@@ -39,6 +39,14 @@
   }
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0D1117;
+  min-height: 100%; 
+  color: white;
+  font-family: sans-serif;
+}
 
 /* 全局重置：确保背景全屏 */
 html, body {
@@ -49,4 +57,11 @@ html, body {
   min-height: 100%; 
   color: white;
   font-family: sans-serif;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #0D1117;
+  padding-bottom: 2rem;
+  color: white;
 }
