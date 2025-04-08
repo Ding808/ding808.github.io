@@ -187,20 +187,27 @@
     background-color: #161B22;
     min-height: 100vh;
     padding: 50px 20px;
+  
+    /* Flex 布局保持不变，用于垂直居中内容 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin: 2rem; 
+  
+    /* 让容器有一个最大宽度，左右 margin 设置为 auto 实现居中 */
+    max-width: 1200px;
+    margin: 2rem auto;
+  
     border-radius: 40px;
   }
   
+  /* 标题 */
   .projects-section h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
   
+  /* 网格布局：单元格最小宽度 250px，自适应一行多少列 */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -209,18 +216,15 @@
     width: 100%;
   }
   
+  /* 每个项目卡片容器 */
   .project-card {
     background-color: #0D1117;
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
-  }
-  
-  .project-card img {
-    width: 100%;
-    margin-bottom: 1rem;
-
-    box-shadow: 0 0 30px rgba(88, 166, 255, 0.5);
+    /* 如果想强制最大宽度，可以加上这句 */
+    /* max-width: 300px; */
+    margin: 0 auto; /* 让卡片在其网格单元格内居中 */
   }
   
   /* Contact Section */

@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import BlurText from '../Canvas/BlurText';
 import './Home.css'; 
 import SplitText from "../Components/SplitText";
+import TiltedCard from '../Components/TiltedCard';
 
 // 动画完成后的回调
 const handleAnimationComplete = () => {
@@ -199,36 +200,73 @@ function Home({setPage}) {
       </section>
 
       {/* Projects 区域 */}
+   
       <section className="projects-section">
         <AnimatedSection>
           <h2>Featured Projects</h2>
           <div className="projects-grid">
-            {/* 示例项目卡片 */}
+            {/* Finance App 项目卡片 */}
             <div className="project-card">
-              <img
-                src="/images/admin-dashboard.png"
-                alt="Finance App"
+              <TiltedCard
+                imageSrc="/images/admin-dashboard.png"
+                altText="Finance App"
+                captionText="Finance App"
+                /* 去掉固定尺寸，让卡片随容器自适应 */
+                rotateAmplitude={12}
+                scaleOnHover={1.2}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <p className="tilted-card-demo-text">
+                    This is my finance app project
+                  </p>
+                }
               />
               <h3>Finance App</h3>
               <p>This is my finance app project</p>
             </div>
 
+            {/* College Portal 项目卡片 */}
             <div className="project-card">
-              <img
-                src="/images/ecommerce.png"
-                alt="College Portal"
+              <TiltedCard
+                imageSrc="/images/ecommerce.png"
+                altText="College Portal"
+                captionText="College Portal"
+                rotateAmplitude={12}
+                scaleOnHover={1.2}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <p className="tilted-card-demo-text">
+                    This is my college portal project
+                  </p>
+                }
               />
               <h3>College Portal</h3>
               <p>This is my college portal project</p>
             </div>
 
+            {/* My Portfolio Website 项目卡片 */}
             <div className="project-card">
-              <img
-                src="/images/ai-chatbot.png"
-                alt="My Portfolio Website"
+              <TiltedCard
+                imageSrc="/images/ai-chatbot.png"
+                altText="My Portfolio Website"
+                captionText="My Portfolio Website"
+                rotateAmplitude={12}
+                scaleOnHover={1.2}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <p className="tilted-card-demo-text">
+                    This is my own portfolio website project
+                  </p>
+                }
               />
               <h3>My Portfolio Website</h3>
-              <p>The is my own portfolio website project</p>
+              <p>This is my own portfolio website project</p>
             </div>
           </div>
         </AnimatedSection>

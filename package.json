@@ -20,7 +20,7 @@
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/preset-triangles": "^3.2.0",
     "@tsparticles/react": "^3.0.0",
-    "framer-motion": "^12.4.4",
+    "framer-motion": "^12.6.3",
     "gh-pages": "^6.3.0",
     "meshline": "^3.3.1",
     "react": "^19.0.0",
