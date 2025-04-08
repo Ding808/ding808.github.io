@@ -227,12 +227,12 @@ function Home({setPage}) {
               <p>This is my finance app project</p>
             </div>
 
-            {/* College Portal 项目卡片 */}
+            {/* SignScribe 项目卡片 */}
             <div className="project-card">
               <TiltedCard
-                imageSrc="/images/ecommerce.png"
-                altText="College Portal"
-                captionText="College Portal"
+                imageSrc="/images/SignScribe.png"
+                altText="Sign Scribe"
+                captionText="Sign Scribe"
                 rotateAmplitude={12}
                 scaleOnHover={1.2}
                 showMobileWarning={false}
@@ -240,12 +240,12 @@ function Home({setPage}) {
                 displayOverlayContent={true}
                 overlayContent={
                   <p className="tilted-card-demo-text">
-                    This is my college portal project
+                    This is my Sign Scribe Chrome Extension
                   </p>
                 }
               />
-              <h3>College Portal</h3>
-              <p>This is my college portal project</p>
+              <h3>Sign Scribe</h3>
+              <p>This is my Sign Scribe Chrome Extensiont</p>
             </div>
 
             {/* My Portfolio Website 项目卡片 */}
