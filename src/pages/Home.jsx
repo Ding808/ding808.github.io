@@ -229,6 +229,7 @@ function Home({setPage}) {
 
             {/* SignScribe 项目卡片 */}
             <div className="project-card">
+            <a href="https://github.com/Ding808" target="_blank" rel="noopener noreferrer">
               <TiltedCard
                 imageSrc="/images/SignScribe.png"
                 altText="Sign Scribe"
@@ -244,6 +245,7 @@ function Home({setPage}) {
                   </p>
                 }
               />
+              </a>
               <h3>Sign Scribe</h3>
               <p>This is my Sign Scribe Chrome Extensiont</p>
             </div>
