@@ -252,6 +252,7 @@ function Home({setPage}) {
 
             {/* My Portfolio Website 项目卡片 */}
             <div className="project-card">
+            <a href="https://github.com/Ding808" target="_blank" rel="noopener noreferrer">
               <TiltedCard
                 imageSrc="/images/ai-chatbot.png"
                 altText="My Portfolio Website"
@@ -267,6 +268,7 @@ function Home({setPage}) {
                   </p>
                 }
               />
+              </a>
               <h3>My Portfolio Website</h3>
               <p>This is my own portfolio website project</p>
             </div>
