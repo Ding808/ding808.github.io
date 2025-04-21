@@ -207,6 +207,7 @@ function Home({setPage}) {
           <div className="projects-grid">
             {/* Finance App 项目卡片 */}
             <div className="project-card">
+            <a href="https://github.com/Ding808" target="_blank" rel="noopener noreferrer">
               <TiltedCard
                 imageSrc="/images/admin-dashboard.png"
                 altText="Finance App"
@@ -223,6 +224,7 @@ function Home({setPage}) {
                   </p>
                 }
               />
+              </a>
               <h3>Finance App</h3>
               <p>This is my finance app project</p>
             </div>
